@@ -29,7 +29,7 @@
         <!-- Título y enlaces -->
         <div class="flex flex-col text-left ml-6">
           <h1 class="text-3xl text-center md:text-5xl text-lime-400 leading-tight">El rincón del dev</h1>
-          <div class="flex text-xl gap-x-12 mt-3 text-lime-300">
+          <div class="flex text-xl gap-x-10 mt-3 text-lime-300">
             <a href="{{ url('/') }}"
             class="transition-transform duration-300 hover:scale-125 
               {{ request()->is('/') ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
@@ -46,9 +46,20 @@
         <!-- Perfil (a la derecha, alineado con el logo) -->
         <div class="ml-auto flex items-center h-full md:mr-4">
           <div class="relative" x-data="{ open: false }">
-            <button @click="open = !open" class="flex items-center gap-2 text-lime-300 hover:text-lime-500 focus:outline-none" :class="open ? 'text-lime-500' : 'text-lime-300 hover:text-lime-500'">
-              <i class="fas fa-user-circle text-6xl"></i>
-            </button>
+            <button 
+      @click="open = !open" 
+      class="flex items-center gap-2 text-lime-300 hover:text-lime-500 focus:outline-none"
+      :class="open ? 'text-lime-500' : 'text-lime-300 hover:text-lime-500'">
+      
+      <i class="fas fa-user-circle text-6xl"></i>
+
+      @auth
+        <span class="text-2xl font-semibold">
+          {{ Auth::user()->username }}
+        </span>
+      @endauth
+
+    </button>
 
             <!-- Menú desplegable -->
             <div
@@ -57,14 +68,31 @@
               x-transition
               class="absolute text-xl mt-2 w-48 bg-[#1f1b16] border border-lime-300 text-lime-300 rounded-lg shadow-lg py-2 z-50"
             >
-              <a href="{{ route('login.show') }}"
-                class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
-                Iniciar sesión
-              </a>
-              <a href="{{ route('register.show') }}"
-                class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
-                Registro
-              </a>
+              @guest
+                <a href="{{ route('login.show') }}"
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
+                  Iniciar sesión
+                </a>
+                <a href="{{ route('register.show') }}"
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
+                  Registro
+                </a>
+              @endguest
+
+              @auth
+                <a
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
+                  Perfil
+                </a>
+                <a
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
+                  Tus posts
+                </a>
+                <a href="{{ route('logout.confirm') }}"
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
+                  Cerrar sesión
+                </a>
+                @endauth
             </div>
           </div>
         </div>
@@ -73,33 +101,6 @@
     </div>
   </div>
 
-    
-    <!-- <div x-show="navOpen" class="md:hidden mt-4 flex flex-col gap-4 text-white">
-      <h1 class="text-2xl">Libreros</h1>
-      <a href="{{ route('books') }}"
-              class="text-xl md:text-xl transition-transform duration-300 hover:scale-105 
-                      {{ request()->is('books*', 'purchases*') ? 'text-amber-200' : 'text-white' }}">
-              Libros
-            </a>
-
-            <a href="{{ route('writers') }}"
-              class="text-xl md:text-xl transition-transform duration-300 hover:scale-105 
-                      {{ request()->is('writers*') ? 'text-amber-200' : 'text-white' }}">
-              Autores
-            </a>
-      <hr class="border-white my-2" />
-      <span class="text-xl">El rincón de los lectores más apasionados</span>
-      <a href="{{ route('login.show') }}" 
-              class="text-xl md:text-xl transition-transform duration-300 hover:scale-105 
-                      {{ request()->routeIs('login.show') ? 'text-amber-200' : 'text-white' }}">
-              Login
-            </a>
-            <a href="{{ route('register.show') }}"
-            class="text-xl md:text-xl transition-transform duration-300 hover:scale-105 
-                      {{ request()->routeIs('register.show') ? 'text-amber-200' : 'text-white' }}">
-              Registro
-            </a>
-    </div> -->
 
   </div>
 </header>

@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     // formulario para registro
     public function showRegister(){
-        return view('register');
+        return view('user/register');
     }
 
 
@@ -63,7 +63,7 @@ class UserController extends Controller
 
     // formulario de login
     public function showLogin() {
-        return view('login');
+        return view('user/login');
     }
 
 
@@ -102,7 +102,7 @@ class UserController extends Controller
     }
 
     Auth::login($user);
-    return redirect()->intended('/home');
+    return redirect()->intended('/');
 }
 
 
@@ -112,12 +112,12 @@ class UserController extends Controller
 
 public function logout(){
     Auth::logout(); 
-    return view('home');
+    return redirect('/');
 }
 
 // mostrar confirmación de cierre de sesión
 public function mostrarViewLogout() {
-    return view('confirmLogout');
+    return view('user/logout');
 }
 
 
