@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="flex flex-col min-h-screen text-white bg-white font-[Courier New]">
+<body class="flex flex-col min-h-screen text-white bg-neutral-100 font-[Courier New]">
 
     @include('partials.header') 
 
-    <main class="flex-grow flex flex-col items-center bg-white text-black px-6 mt-36">
+    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-36">
         
-        <section class="text-center mb-8 w-[70%] mx-auto px-10 py-10 bg-white">
+        <section class="text-center mb-8 w-[70%] mx-auto px-10 py-10 bg-neutral-100">
 
-  <div class="grid grid-cols-[70%_30%] items-center gap-1 shadow-lg rounded-2xl px-10">
+  <div class="grid grid-cols-[70%_30%] items-center gap-1 shadow-2xl rounded-2xl px-10 bg-white border border-neutral-300">
     <div>
         <h1 class="text-3xl text-center text-black mb-6">
       El rincón del dev: La web del programador
@@ -39,7 +39,7 @@
 
 
     <section class="grid grid-cols-4 w-[90%] items-center gap-6 mb-16">
-        <article class="flex flex-col justify-between border-2 border-lime-300 rounded-2xl px-10 py-10 shadow-lg bg-lime-200 text-center hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-purple-700 text-center text-lime-200 hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
             <h2 class="text-2xl underline mb-8"><strong>INICIOS</strong></h2>
             <h3 class="text-xl mb-8">Los primeros pasos de la comunidad</h3>
             <img src="img/community.svg" alt="Descripción" class="mx-auto mb-6 h-32">
@@ -47,7 +47,7 @@
                 <button class="bg-lime-300 w-30 mt-8 text-black text-xl font-bold border-2 border-solid border-black px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110">Ir</button>
             </a>
         </article>
-        <article class="flex flex-col justify-between border-2 border-lime-300 rounded-2xl px-10 py-10 shadow-lg bg-lime-200 text-center hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-indigo-600 text-center text-lime-200 hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
             <h2 class="text-2xl underline mb-8"><strong>TECNOLOGÍAS</strong></h2>
             <h3 class="text-xl mb-8">Consejos e historias sobre las tecnologías</h3>
             <img src="img/tech.svg" alt="Descripción" class="mx-auto mb-6 h-32">
@@ -55,7 +55,7 @@
                 <button class="bg-lime-300 w-30 mt-8 text-black text-xl font-bold border-2 border-solid border-black px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110">Ir</button>
             </a>
         </article>
-        <article class="flex flex-col justify-between border-2 border-lime-300 rounded-2xl px-10 py-10 shadow-lg bg-lime-200 text-center hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-orange-700 text-center text-lime-200 hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
             <h2 class="text-2xl underline mb-8"><strong>EXPERIENCIAS</strong></h2>
             <h3 class="text-xl mb-8">Aportaciones tanto profesionales como educativas</h3>
             <img src="img/work.svg" alt="Descripción" class="mx-auto mb-6 h-32">
@@ -63,7 +63,7 @@
                 <button class="bg-lime-300 w-30 mt-8 text-black text-xl font-bold border-2 border-solid border-black px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110">Ir</button>
             </a>
         </article>
-        <article class="flex flex-col justify-between border-2 border-lime-300 rounded-2xl px-10 py-10 shadow-lg bg-lime-200 text-center hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-yellow-600 text-center text-lime-200 hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
             <h2 class="text-2xl underline mb-8"><strong>OPINIONES</strong></h2>
             <h3 class="text-xl mb-8">Puntos de vista de la comunidad</h3>
             <img src="img/chat.svg" alt="Descripción" class="mx-auto mb-6 h-32">

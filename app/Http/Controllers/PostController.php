@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -26,7 +27,7 @@ class PostController extends Controller
 
     public function showPost($id) {
         $post = Post::with('comments.user')->findOrFail($id);
-        return view('postView', compact('post'));
+        return view('post/showPost', compact('post'));
     }
 
     public function indexPosts() {
@@ -35,45 +36,107 @@ class PostController extends Controller
     }
 
     public function showInsert() {
-        return view('insertPostView');
+        return view('post/insert');
     }
 
-    public function doInsert(Request $request) {
-       $validator = Validator::make($request->all(), [
+    public function doInsert(Request $request)
+{
+    
+    $validator = Validator::make($request->all(), [
         'title' => 'required|string|max:255',
-        'type' => 'required|in:Inicio,Tecnología,Experiencia,Opinión',
-        'post'  => 'required|string|min:10'
+        'type'  => 'required|in:Inicio,Tecnología,Experiencia,Opinión',
+        'post'  => 'required|string|min:10',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
     ], [
         'title.required' => 'El título es obligatorio.',
-        'title.string' => 'El título debe ser una cadena de texto.',
-        'title.max' => 'El título no puede superar los 255 caracteres.',
-
-        'type.required' => 'El tipo es obligatorio.',
-        'type.in' => 'El tipo debe ser uno de los siguientes: Inicio, Tecnología, Experiencia u Opinión.',
-
-        'post.required' => 'El contenido del post es obligatorio.',
-        'post.string' => 'El contenido debe ser una cadena de texto.',
-        'post.min' => 'El post debe contener un mínimo de 10 caracteres.'
+        'type.required'  => 'El tipo es obligatorio.',
+        'post.required'  => 'El contenido del post es obligatorio.',
+        'image.image'    => 'El archivo debe ser una imagen.',
+        'image.mimes'    => 'La imagen debe ser jpeg, png, jpg, gif o svg.',
+        'image.max'      => 'La imagen no puede superar los 2MB.'
     ]);
 
-        if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $post = new Post();
-        $post->title = $request->title;
-        $post->type = $request->type;
-        $post->publish_date = now();
-        $post->post = $request->now();
-        $post->user_id = auth()->id(); 
-        $post->save();
-        return redirect()->route('showInsertPost')->with('succes', 'Post insertado correctamente');
+    
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
     }
+
+    
+    $content = $request->post;
+
+    
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('posts', 'public');
+        $imageUrl = Storage::url($imagePath);
+
+        
+        $content .= "<br><img src='{$imageUrl}' alt='Imagen del post' style='max-width: 100%; height: auto;'>";
+    }
+
+    
+    $post = new Post();
+    $post->title = $request->title;
+    $post->type = $request->type;
+    $post->publish_date = now();
+    $post->post = $content; 
+    $post->user_id = auth()->id();
+    $post->save();
+
+    return redirect()->route('show', ['id' => $post->id])->with('success', 'Post insertado correctamente');
+}
 
     public function delete($id) {
         $post = Post::findOrFail($id);
         $post->delete();
         return redirect() -> route('posts.show')->with('success', 'El post ha sido eliminado correctamente');
     }
+
+
+    public function update(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'type'  => 'required|in:Inicio,Tecnología,Experiencia,Opinión',
+            'post'  => 'required|string|min:10',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ], [
+            'title.required' => 'El título es obligatorio.',
+            'type.required'  => 'El tipo es obligatorio.',
+            'post.required'  => 'El contenido del post es obligatorio.',
+            'image.image'    => 'El archivo debe ser una imagen.',
+            'image.mimes'    => 'La imagen debe ser jpeg, png, jpg, gif o svg.',
+            'image.max'      => 'La imagen no puede superar los 2MB.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $content = $request->post;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('posts', 'public');
+            $imageUrl = Storage::url($imagePath);
+
+            
+            $content .= "<br><img src='{$imageUrl}' alt='Imagen del post' style='max-width: 100%; height: auto;'>";
+        }
+
+        $post = Post::findOrFail($id);
+        $post->title = $request->title;
+        $post->type = $request->type;
+        $post->publish_date = now();
+        $post->post = $content; 
+        $post->user_id = auth()->id();
+        $post->save();
+
+        return redirect()->route('show', ['id' => $post->id])->with('success', 'Post editado correctamente');
+
+    }
     
+
+    public function edit($id)
+{
+    $post = Post::findOrFail($id);
+    return view('editBook', compact('book', 'writers'));  
+}
 }

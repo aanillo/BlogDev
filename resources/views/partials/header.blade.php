@@ -8,7 +8,7 @@
       <!-- Logo -->
       <div class="flex-shrink-0">
         <a href="{{ url('/') }}">
-          <img src="{{ asset('img/logo.png') }}" width="120px" />
+          <img src="{{ asset('img/logoSinFondo.png') }}" width="120px" />
         </a>
       </div>
 
@@ -39,7 +39,18 @@
             <a>Aprender tecnologías</a>
             <a>Experiencias</a>
             <a>Opiniones</a>
-            <a>Participa</a>
+            @auth
+    <a href="{{ route('insert.show', ['id' => auth()->user()->id]) }}"
+       class="transition-transform duration-300 hover:scale-125 
+              {{ request()->routeIs('insert.show') ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
+        Crea tu post
+    </a>
+@else
+    <a href="{{ route('login.show') }}"
+       class="transition-transform duration-300 hover:scale-125 text-lime-400">
+        Crea tu post
+    </a>
+@endauth
           </div>
         </div>
 

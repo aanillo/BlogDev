@@ -13,11 +13,11 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="flex flex-col min-h-screen text-white bg-white font-[Courier New]">
+<body class="flex flex-col min-h-screen text-white bg-neutral-100 font-[Courier New]">
 
     @include('partials.header')
 
-    <main class="flex-grow flex flex-col items-center bg-white text-black px-6 mt-48">
+    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-48">
 
         <!-- Formulario de registro -->
         <form
@@ -162,13 +162,13 @@
                     <div class="flex flex-row gap-10 mt-4 mb-6">
                         <button
                             type="submit"
-                            class="bg-lime-300 font-bold w-40 sm:w-64 text-black text-xl border-2 border-black px-6 py-2 rounded-md hover:bg-lime-500 transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="bg-green-800 font-bold w-40 sm:w-64 text-lime-300 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110"
                         >
                             Registrarse
                         </button>
                         <button
                             type="reset"
-                            class="bg-red-500 font-bold w-40 sm:w-64 text-black text-xl border-2 border-black px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="bg-red-600 font-bold w-40 sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110"
                         >
                             Cancelar
                         </button>
@@ -188,7 +188,7 @@
                         <h3 class="text-xl text-lime-300 mb-2">Volver a Home:</h3>
                         <a
                             href="{{ url('/') }}"
-                            class="btnHome w-40 sm:w-64 bg-[#1f1b16] text-lime-200 text-xl text-center font-bold border border-lime-200 px-10 py-1.5 rounded-md hover:bg-black transform transition-transform duration-1000 ease-in-out hover:scale-110"
+                            class="btnHome w-40 sm:w-64 bg-purple-800 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-1.5 rounded-md hover:bg-purple-900 transform transition-transform duration-1000 ease-in-out hover:scale-110"
                         >
                             Home
                         </a>
