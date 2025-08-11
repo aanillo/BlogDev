@@ -30,12 +30,12 @@
 
         <h1 class="text-4xl md:text-6xl font-extrabold text-center text-lime-600 underline mb-12 tracking-tight">POST</h1>
 
-        <section class="w-[80%] px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12">
+        <section class="w-[80%] px-10 py-12 bg-lime-100 border border-neutral-300 rounded-2xl shadow-lg mb-12">
 
-            <!-- Título fuera del grid -->
-            <div class="bg-neutral-900 text-lime-400 px-8 py-6 rounded-lg shadow-md mb-12 text-center">
-                <h1 class="text-5xl font-bold leading-tight">{{ $post->title }}</h1>
-            </div>
+            <div class="bg-neutral-800 w-[60%] mx-auto border-2 border-lime-500 text-lime-500 px-8 py-6 rounded-lg shadow-md mb-12 text-center">
+    <h1 class="text-5xl font-bold leading-tight">{{ $post->title }}</h1>
+</div>
+
 
             <!-- Grid principal -->
             <div class="grid grid-cols-[70%_25%] gap-12">
@@ -61,28 +61,28 @@
                     </div>
 
                     <!-- Contenido -->
-                    <article class="prose prose-lg max-w-none text-black border-l-8 border-r-8 border-lime-500 pl-6">
+                    <article class="prose prose-lg max-w-none bg-white text-black bg-lime-100 border-l-8 border-r-8 border-lime-500 p-6">
                         {!! $post->post !!}
                     </article>
 
                     <!-- Botones -->
                     <div class="flex flex justify-between items-center mt-8">
                         <a href="{{ url('/') }}"
-                           class="px-8 py-3 w-60 text-xl text-center bg-purple-800 text-lime-300 font-bold rounded-md hover:bg-purple-900 transition transform hover:scale-105">
+                           class="px-8 py-3 w-60 text-xl text-center bg-purple-600 text-black border-2 border-black font-bold rounded-md hover:bg-purple-700 transition transform hover:scale-105">
                             <i class="fas fa-home mr-2"></i> Home
                         </a>
 
                         @auth
                         @if (Auth::id() === $post->user_id)
                             <a href="{{ route('edit', $post->id) }}"
-                               class="px-8 py-3 w-60 text-xl text-center items-center bg-indigo-700 text-lime-300 font-bold rounded-md hover:bg-indigo-800 transition transform hover:scale-105 flex items-center justify-center gap-2">
+                               class="px-8 py-3 w-60 text-xl text-center items-center bg-indigo-500 text-black border-2 border-black font-bold rounded-md hover:bg-indigo-600 transition transform hover:scale-105 flex items-center justify-center gap-2">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
                             <form action="{{ route('delete', $post->id) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este post?');" class="inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                    class="px-8 py-3 w-60 text-xl text-center items-center bg-red-600 text-lime-200 font-bold rounded-md hover:bg-red-700 transition transform hover:scale-105 flex items-center justify-center gap-2">
+                                    class="px-8 py-3 w-60 text-xl text-center items-center bg-red-500 border-2 border-black text-black font-bold rounded-md hover:bg-red-600 transition transform hover:scale-105 flex items-center justify-center gap-2">
                                     <i class="fas fa-trash-alt"></i> Eliminar
                                 </button>
                             </form>
@@ -92,15 +92,15 @@
                 </div>
 
                 <!-- Columna derecha (comentarios) -->
-                <div class="flex flex-col bg-neutral-50 rounded-lg shadow-md p-6 max-h-[650px] overflow-auto">
+                <div class="flex flex-col rounded-lg p-6 max-h-[650px] overflow-auto">
 
                     @auth
                     <form action="{{ route('comments.store') }}" method="POST" class="mb-6 space-y-3">
                         @csrf
-                        <label for="comment" class="block font-semibold text-gray-700">Envía un comentario:</label>
+                        <label for="comment" class="block font-semibold text-black">Envía un comentario:</label>
                         <textarea name="comment" id="comment" rows="3" required
                             placeholder="Escribe tu comentario aquí..."
-                            class="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500 resize-none text-black"></textarea>
+                            class="w-full bg-white p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500 resize-none text-black"></textarea>
                         @error('comment')
                             <p class="text-red-600 text-sm">{{ $message }}</p>
                         @enderror

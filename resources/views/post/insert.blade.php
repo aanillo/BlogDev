@@ -44,20 +44,20 @@
 
 <div class="flex justify-center flex-wrap gap-4 mb-8">
     <template x-for="option in [
-        { label: 'INICIOS', value: 'Inicio', color: 'bg-purple-700' },
-        { label: 'TECNOLOGÍAS', value: 'Tecnología', color: 'bg-indigo-600' },
-        { label: 'EXPERIENCIAS', value: 'Experiencia', color: 'bg-orange-700' },
-        { label: 'OPINIONES', value: 'Opinión', color: 'bg-yellow-600' }
+        { label: 'INICIOS', value: 'Inicio', color: 'bg-purple-600' },
+        { label: 'TECNOLOGÍAS', value: 'Tecnología', color: 'bg-indigo-500' },
+        { label: 'EXPERIENCIAS', value: 'Experiencia', color: 'bg-orange-600' },
+        { label: 'OPINIONES', value: 'Opinión', color: 'bg-yellow-500' }
     ]" :key="option.value">
         <button
             type="button"
             @click="selectedType = option.value"
-            :class="[
-                selectedType === option.value 
-                    ? 'bg-neutral-900 scale-105 ring-4 ring-lime-300 text-xl'
-                    : option.color + ' text-lime-200 hover:ring-2 hover:ring-white',
-                'px-4 py-2 rounded-md text-xl w-[20%] transition-all border-2 border-lime-200 font-semibold transform hover:scale-110'
-            ].join(' ')"
+            :class="[ 
+    selectedType === option.value 
+        ? 'bg-neutral-900 scale-105 ring-2 ring-lime-300 text-xl text-lime-200 border-lime-200 font-semibold' 
+        : option.color + ' text-black border-2 ring-2 ring-neutral-700 border-black font-bold', 
+    'px-4 py-2 rounded-md text-xl w-[20%] transition-all border-2 transform hover:scale-110' 
+].join(' ')"
         >
             <span x-text="option.label"></span>
         </button>
@@ -67,12 +67,18 @@
 
             <div class="flex flex-col mt-4 mb-8 gap-2 text-xl">
                 <h3>Título:</h3>
-                <input name="title" class="w-full h-[40px] bg-neutral-700 border border-lime-500 rounded-2xl shadow-xl p-4" required>
+                <input name="title" class="w-full h-[40px] bg-neutral-700 border border-lime-500 rounded-2xl shadow-xl p-4">
+                @error("title")
+        <small class="text-red-500 text-lg font-bold">{{ $message }}</small>
+    @enderror
             </div>
 
             <div class="flex flex-col gap-2">
                 <h3 class="text-xl">Cuéntanos sobre tí:</h3>
-                <textarea name="post" class="w-full h-[800px] bg-neutral-700 text-lg border border-lime-500 rounded-2xl shadow-xl p-4" required></textarea>
+                <textarea name="post" class="w-full h-[800px] bg-neutral-700 text-lg border border-lime-500 rounded-2xl shadow-xl p-4"></textarea>
+                @error("post")
+        <small class="text-red-500 text-lg font-bold">{{ $message }}</small>
+    @enderror
             </div>
 
     <!-- Drag & Drop usando Alpine.js -->
@@ -98,6 +104,9 @@
         <template x-if="imageFile">
             <p class="mt-4 text-sm text-lime-300">Imagen seleccionada: <strong x-text="imageFile.name"></strong></p>
         </template>
+        @error("image")
+        <small class="text-red-500 text-lg font-bold block mt-2">{{ $message }}</small>
+    @enderror
     </div>
             
             </div>

@@ -91,8 +91,9 @@
               @endguest
 
               @auth
-                <a
-                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
+                <a href="{{ route('profile', ['id' => auth()->user()->id]) }}"
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
+                   {{ request()->routeIs('profile') || request()->is('users/profile*') ? 'text-lime-300 underline' : 'text-lime-400' }}">
                   Perfil
                 </a>
                 <a
@@ -100,7 +101,8 @@
                   Tus posts
                 </a>
                 <a href="{{ route('logout.confirm') }}"
-                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
+                    {{ request()->routeIs('logout') || request()->is('users/logout*') ? 'text-lime-300 underline' : 'text-lime-400' }}">
                   Cerrar sesión
                 </a>
                 @endauth

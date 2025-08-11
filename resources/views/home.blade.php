@@ -15,14 +15,14 @@
 
     <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-36">
         
-        <section class="text-center mb-8 w-[70%] mx-auto px-10 py-10 bg-neutral-100">
+        <section class="text-center mb-8 w-[80%] mx-auto px-10 py-10 bg-neutral-100">
 
-  <div class="grid grid-cols-[70%_30%] items-center gap-1 shadow-2xl rounded-2xl px-10 bg-white border border-neutral-300">
+  <div class="grid grid-cols-[70%_30%] items-center gap-1 shadow-2xl rounded-2xl p-10 bg-white border border-neutral-300">
     <div>
-        <h1 class="text-3xl text-center text-black mb-6">
+        <h1 class="text-5xl text-center text-black mb-6">
       El rincón del dev: La web del programador
     </h1>
-    <h3 class="text-lg">
+    <h3 class="text-xl">
         Este es tu espacio para compartir vivencias y experiencias en el fascinante mundo de la programación: cómo te iniciaste, por qué elegiste cierta tecnología, tus aprendizajes, desafíos y la forma en que entiendes y vives el desarrollo de software.
     </h3>
     </div>
@@ -39,36 +39,36 @@
 
 
     <section class="grid grid-cols-4 w-[90%] items-center gap-6 mb-16">
-        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-purple-700 text-center text-lime-200 hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
-            <h2 class="text-2xl underline mb-8"><strong>INICIOS</strong></h2>
-            <h3 class="text-xl mb-8">Los primeros pasos de la comunidad</h3>
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-purple-600 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
+            <h2 class="text-3xl underline mb-8"><strong>INICIOS</strong></h2>
+            <h3 class="text-2xl mb-8">Los primeros pasos de la comunidad</h3>
             <img src="img/community.svg" alt="Descripción" class="mx-auto mb-6 h-32">
             <a>
-                <button class="bg-lime-300 w-30 mt-8 text-black text-xl font-bold border-2 border-solid border-black px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110">Ir</button>
+                <button class="bg-neutral-800 w-40 mt-8 text-lime-500 text-xl font-bold border-2 border-solid border-lime-500 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
         </article>
-        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-indigo-600 text-center text-lime-200 hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
-            <h2 class="text-2xl underline mb-8"><strong>TECNOLOGÍAS</strong></h2>
-            <h3 class="text-xl mb-8">Consejos e historias sobre las tecnologías</h3>
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-indigo-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
+            <h2 class="text-3xl underline mb-8"><strong>TECNOLOGÍAS</strong></h2>
+            <h3 class="text-2xl mb-8">Consejos e historias sobre las tecnologías</h3>
             <img src="img/tech.svg" alt="Descripción" class="mx-auto mb-6 h-32">
             <a>
-                <button class="bg-lime-300 w-30 mt-8 text-black text-xl font-bold border-2 border-solid border-black px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110">Ir</button>
+                <button class="bg-neutral-800 w-40 mt-8 text-lime-500 text-xl font-bold border-2 border-solid border-lime-500 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
         </article>
-        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-orange-700 text-center text-lime-200 hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
-            <h2 class="text-2xl underline mb-8"><strong>EXPERIENCIAS</strong></h2>
-            <h3 class="text-xl mb-8">Aportaciones tanto profesionales como educativas</h3>
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-orange-600 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
+            <h2 class="text-3xl underline mb-8"><strong>EXPERIENCIAS</strong></h2>
+            <h3 class="text-2xl mb-8">Aportaciones tanto profesionales como educativas</h3>
             <img src="img/work.svg" alt="Descripción" class="mx-auto mb-6 h-32">
             <a>
-                <button class="bg-lime-300 w-30 mt-8 text-black text-xl font-bold border-2 border-solid border-black px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110">Ir</button>
+                <button class="bg-neutral-800 w-40 mt-8 text-lime-500 text-xl font-bold border-2 border-solid border-lime-500 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
         </article>
-        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-yellow-600 text-center text-lime-200 hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
-            <h2 class="text-2xl underline mb-8"><strong>OPINIONES</strong></h2>
-            <h3 class="text-xl mb-8">Puntos de vista de la comunidad</h3>
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-yellow-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
+            <h2 class="text-3xl underline mb-8"><strong>OPINIONES</strong></h2>
+            <h3 class="text-2xl mb-8">Puntos de vista de la comunidad</h3>
             <img src="img/chat.svg" alt="Descripción" class="mx-auto mb-6 h-32">
             <a>
-                <button class="bg-lime-300 w-30 mt-8 text-black text-xl font-bold border-2 border-solid border-black px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110">Ir</button>
+                <button class="bg-neutral-800 w-40 mt-8 text-lime-500 text-xl font-bold border-2 border-solid border-lime-500 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
         </article>
     </section>

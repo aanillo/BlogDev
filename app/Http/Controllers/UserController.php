@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Writer;
 use Illuminate\Http\Request;
@@ -254,14 +256,16 @@ public function indexUsers()
     public function showProfile($id)
 {
     $user = auth()->user();
-    return view('userProfile', compact(var_name: 'user'));
+    $numPosts = Post::where('user_id', $user->id)->count();
+    $numComments = Comment::where('user_id', $user->id)->count();
+    return view('user/profile', compact('user', 'numPosts', 'numComments'));
 }
 
 // vista para editar usuario
 
 public function editProfile($id) {
     $user = User::findOrFail($id);
-    return view('editProfile', compact('user'));
+    return view('user/edit', compact('user'));
 }
 
 
@@ -308,7 +312,7 @@ public function updateProfile(Request $request, $id) {
 public function editProfilePsw($id)
 {
     $user = User::findOrFail($id);
-    return view('editPsw', compact('user'));
+    return view('user/password', compact('user'));
 }
 
 
@@ -350,7 +354,7 @@ public function updateProfilePsw(Request $request, $id)
 public function deleteShow($id)
 {
     $user = User::findOrFail($id);
-    return view('confirmDelete', compact('user'));
+    return view('user/delete', compact('user'));
 }
 
 // borrado de usuario

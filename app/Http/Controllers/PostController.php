@@ -51,6 +51,7 @@ class PostController extends Controller
         'title.required' => 'El título es obligatorio.',
         'type.required'  => 'El tipo es obligatorio.',
         'post.required'  => 'El contenido del post es obligatorio.',
+        'post.min' => 'El post debe tener mínimo 10 caracteres.',
         'image.image'    => 'El archivo debe ser una imagen.',
         'image.mimes'    => 'La imagen debe ser jpeg, png, jpg, gif o svg.',
         'image.max'      => 'La imagen no puede superar los 2MB.'
@@ -88,7 +89,7 @@ class PostController extends Controller
     public function delete($id) {
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect() -> route('posts.show')->with('success', 'El post ha sido eliminado correctamente');
+        return redirect() -> route('insert')->with('success', 'El post ha sido eliminado correctamente');
     }
 
 
@@ -137,6 +138,6 @@ class PostController extends Controller
     public function edit($id)
 {
     $post = Post::findOrFail($id);
-    return view('editBook', compact('book', 'writers'));  
+    return view('post/edit', compact('post'));  
 }
 }
