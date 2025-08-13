@@ -35,10 +35,18 @@
               {{ request()->is('/') ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
               Inicio
             </a>
-            <a>Historias de inicio</a>
-            <a>Aprender tecnologías</a>
-            <a>Experiencias</a>
-            <a>Opiniones</a>
+            <a href="{{ route('type', 'Inicio') }}"
+            class="transition-transform duration-300 hover:scale-125 
+              {{ request()->routeIs('type') && request()->route('type') === 'Inicio' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">Historias de inicio</a>
+            <a href="{{ route('type', 'Tecnología') }}"
+            class="transition-transform duration-300 hover:scale-125 
+              {{ request()->routeIs('type') && request()->route('type') === 'Tecnología' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">Aprender tecnologías</a>
+            <a href="{{ route('type', 'Experiencia') }}"
+            class="transition-transform duration-300 hover:scale-125 
+              {{ request()->routeIs('type') && request()->route('type') === 'Experiencia' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">Experiencias</a>
+            <a href="{{ route('type', 'Opinión') }}"
+            class="transition-transform duration-300 hover:scale-125 
+              {{ request()->routeIs('type') && request()->route('type') === 'Opinión' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">Opiniones</a>
             @auth
     <a href="{{ route('insert.show', ['id' => auth()->user()->id]) }}"
        class="transition-transform duration-300 hover:scale-125 
@@ -96,10 +104,11 @@
                    {{ request()->routeIs('profile') || request()->is('users/profile*') ? 'text-lime-300 underline' : 'text-lime-400' }}">
                   Perfil
                 </a>
-                <a
-                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200">
-                  Tus posts
-                </a>
+                <a href="{{ route('user.posts', ['id' => auth()->user()->id]) }}"
+   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
+          {{ request()->routeIs('user.posts') ? 'text-lime-300 underline' : 'text-lime-400' }}">
+   Tus posts
+</a>
                 <a href="{{ route('logout.confirm') }}"
                    class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
                     {{ request()->routeIs('logout') || request()->is('users/logout*') ? 'text-lime-300 underline' : 'text-lime-400' }}">

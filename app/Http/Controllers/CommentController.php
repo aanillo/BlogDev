@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -44,7 +45,7 @@ class CommentController extends Controller
     // mostrar comentarios
     
     public function show($id) {
-        $post = Book::findOrFail($id);
+        $post = Post::findOrFail($id);
         $comments = Comment::where('post_id', $id)->orderByDesc('created_at')->get();
     
         return view('commentform', compact('post', 'comments'));

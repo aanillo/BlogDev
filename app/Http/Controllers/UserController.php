@@ -366,5 +366,17 @@ public function deleteProfile($id) {
 }
 
 
+public function showPostsByUser($id)
+{
+    $user = User::findOrFail($id);
+
+    $posts = $user->posts()
+                  ->orderBy('publish_date', 'desc')
+                  ->get();
+
+    return view('user/showAllPosts', compact('posts', 'user'));
+}
+
+
 
 }

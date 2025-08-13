@@ -40,7 +40,7 @@
     <button 
         type="button"
         disabled
-        class="bg-neutral-900 text-lime-200 px-4 py-2 rounded-md text-xl w-[20%] border-2 border-lime-200 font-semibold ring-4 ring-lime-300 scale-105 cursor-default"
+        class="bg-neutral-900 text-lime-300 px-4 py-2 rounded-md text-xl w-[20%] border-2 border-lime-200 font-semibold ring-4 ring-lime-300 scale-105 cursor-default"
     >
         {{ strtoupper($post->type) }}
     </button>

@@ -19,9 +19,22 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    $posts = Post::where('type', $type)->get();
+    $posts = Post::with('user') 
+    ->where('type', $type)
+    ->get();
 
-    return view('postsByTypeView', compact('posts', 'type'));
+    switch ($type) {
+        case 'Inicio':
+            return view('post/inicio', compact('posts', 'type'));
+        case 'Tecnología':
+            return view('post/tecnologia', compact('posts', 'type'));
+        case 'Experiencia':
+            return view('post/experiencia', compact('posts', 'type'));
+        case 'Opinión':
+            return view('post/opinion', compact('posts', 'type'));
+        default:
+            return redirect()->back();
+    }
 }
 
 
