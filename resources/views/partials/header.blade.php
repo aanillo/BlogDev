@@ -40,7 +40,7 @@
               {{ request()->routeIs('type') && request()->route('type') === 'Inicio' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">Historias de inicio</a>
             <a href="{{ route('type', 'Tecnología') }}"
             class="transition-transform duration-300 hover:scale-125 
-              {{ request()->routeIs('type') && request()->route('type') === 'Tecnología' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">Aprender tecnologías</a>
+              {{ request()->routeIs('type') && request()->route('type') === 'Tecnología' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">Tecnologías</a>
             <a href="{{ route('type', 'Experiencia') }}"
             class="transition-transform duration-300 hover:scale-125 
               {{ request()->routeIs('type') && request()->route('type') === 'Experiencia' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">Experiencias</a>

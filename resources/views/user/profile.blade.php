@@ -21,11 +21,11 @@
 
         <h1 class="text-4xl md:text-6xl font-extrabold text-center text-lime-600 underline mb-12 tracking-tight">PERFIL</h1>
 
-        <section class="w-[80%] px-10 py-12 bg-lime-100 border border-neutral-300 rounded-2xl shadow-lg mb-12">
+        <section class="w-[80%] px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12">
 
             <!-- Avatar + nombre -->
             <div class="flex flex-col items-center mb-10">
-                <div class="flex justify-center w-[50%] items-center bg-neutral-800 px-8 py-4 rounded-lg shadow text-lime-500 text-center border-2 border-lime-500">
+                <div class="flex justify-center w-[50%] items-center bg-neutral-800 px-8 py-4 rounded-lg shadow text-lime-500 text-center border-2 border-lime-500 transition transform hover:scale-105">
                     <h1 class="text-4xl md:text-5xl font-bold">{{ $user->username }}</h1>
                 </div>
                 <span class="mt-4 inline-block bg-neutral-700 text-lime-500 text-lg font-semibold px-4 py-1 rounded-full shadow">
@@ -53,7 +53,7 @@
                         <p><i class="fas fa-pen mr-2 text-lime-500"></i><strong>Posts publicados:</strong> {{ $numPosts }}</p>
                         <p><i class="fas fa-comment-dots mr-2 text-lime-500"></i><strong>Comentarios realizados:</strong> {{ $numComments }}</p>
                         <button type="submit"
-                            class="w-[50%] mt-6 bg-green-800 border-2 border-lime-200 text-lime-200 text-lg font-bold py-2 rounded transition transform hover:bg-green-900 hover:scale-105">
+                            class="w-[50%] mt-6 bg-lime-600 border-2 border-lime-700 text-white text-lg font-bold py-2 rounded-lg transition transform hover:bg-lime-700 hover:scale-105">
                             Ver tus posts
                         </button>
                     </div>
@@ -73,29 +73,34 @@
 
     <!-- Botón Home -->
     <a href="{{ url('/') }}"
-       class="flex items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-purple-600 text-black font-bold rounded-md hover:bg-purple-700 transition transform hover:scale-105">
-        <i class="fas fa-home"></i> <span>Home</span>
+       class="flex flex-col items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-purple-600 text-black font-bold rounded-md hover:bg-purple-700 transition transform hover:scale-105">
+        <i class="fas fa-home text-2xl"></i>
+        <span>Home</span>
     </a>
 
     <!-- Botón Editar Perfil -->
     <a href="{{ route('editProfile', ['id' => $user->id]) }}"
-       class="flex items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-indigo-500 text-black font-bold rounded-md hover:bg-indigo-600 transition transform hover:scale-105">
-        <i class="fas fa-user-edit"></i> <span>Editar perfil</span>
+       class="flex flex-col items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-indigo-500 text-black font-bold rounded-md hover:bg-indigo-600 transition transform hover:scale-105">
+        <i class="fas fa-user-edit text-2xl"></i>
+        <span>Editar perfil</span>
     </a>
 
     <!-- Botón Restablecer Contraseña -->
     <a href="{{ route('editPsw', ['id' => $user->id]) }}"
-       class="flex items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-yellow-500 text-black font-bold rounded-md hover:bg-yellow-600 transition transform hover:scale-105">
-        <i class="fas fa-key"></i> <span>Restablecer contraseña</span>
+       class="flex flex-col items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-yellow-500 text-black text-center font-bold rounded-md hover:bg-yellow-600 transition transform hover:scale-105">
+        <i class="fas fa-key text-2xl"></i>
+        <span>Restablecer contraseña</span>
     </a>
 
     <!-- Botón Eliminar Perfil -->
     <a href="{{ route('deleteShow', ['id' => $user->id]) }}"
-       class="flex items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-red-500 text-black font-bold rounded-md hover:bg-red-600 transition transform hover:scale-105">
-        <i class="fas fa-user-slash"></i> <span>Eliminar perfil</span>
+       class="flex flex-col items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-red-500 text-black font-bold rounded-md hover:bg-red-600 transition transform hover:scale-105">
+        <i class="fas fa-user-slash text-2xl"></i>
+        <span>Eliminar perfil</span>
     </a>
 
 </div>
+
 
 
         </section>

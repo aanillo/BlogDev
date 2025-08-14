@@ -138,7 +138,6 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->type = $request->type;
-        $post->publish_date = now();
         $post->post = $content; 
         $post->user_id = auth()->id();
         $post->save();
