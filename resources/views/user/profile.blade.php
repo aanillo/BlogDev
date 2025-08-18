@@ -52,10 +52,11 @@
                         <h2 class="text-2xl font-bold border-b border-lime-400 pb-1 mb-2 mt-6"><i class="fas fa-chart-line mr-2 text-lime-500"></i>Actividad</h2>
                         <p><i class="fas fa-pen mr-2 text-lime-500"></i><strong>Posts publicados:</strong> {{ $numPosts }}</p>
                         <p><i class="fas fa-comment-dots mr-2 text-lime-500"></i><strong>Comentarios realizados:</strong> {{ $numComments }}</p>
-                        <button type="submit"
+                        <a href="{{ route('user.posts', ['id' => auth()->user()->id]) }}"><button
                             class="w-[50%] mt-6 bg-lime-600 border-2 border-lime-700 text-white text-lg font-bold py-2 rounded-lg transition transform hover:bg-lime-700 hover:scale-105">
                             Ver tus posts
                         </button>
+                        </a>
                     </div>
 
                 </div>

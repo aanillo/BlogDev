@@ -14,32 +14,29 @@ class CommentController extends Controller
     
     // publicar comentario
 
-    public function store(Request $request) {
-        $request->validate([
-            'comment' => 'required|string|max:1000',
-            'post_id' => 'required|exists:books,id', 
-        ], [
-            'comment.required' => 'El comentario es obligatorio.',
-            'comment.string' => 'El comentario debe ser un texto válido.',
-            'comment.max' => 'El comentario no puede tener más de 1000 caracteres.',
-            'post_id.required' => 'El identificador del post es obligatorio.',
-            'post_id.exists' => 'El post seleccionado no existe.',
-        ]);
+    public function store(Request $request)
+{
+    $request->validate([
+        'comment' => 'required|string|max:1000',
+        'post_id' => 'required|exists:posts,id',
+        'parent_id' => 'nullable|exists:comments,id',
+    ]);
 
-
-        if ($this->containsBadWords($request->comment)) {
-            return back()->withErrors(['comment' => 'El comentario contiene lenguaje inapropiado.'])->withInput();
-        }
-    
-        $comment = new Comment();
-        $comment->comment = $request->comment;
-        $comment->publish_date = now();
-        $comment->post_id = $request->post_id;
-        $comment->user_id = auth()->id(); 
-        $comment->save();
-    
-        return redirect()->route('showBook', ['id' => $request->post_id]);
+    if ($this->containsBadWords($request->comment)) {
+        return back()->withErrors(['comment' => 'El comentario contiene lenguaje inapropiado.'])->withInput();
     }
+
+    $comment = new Comment();
+    $comment->comment = $request->comment;
+    $comment->publish_date = now();
+    $comment->post_id = $request->post_id;
+    $comment->user_id = auth()->id();
+    $comment->parent_id = $request->parent_id;
+    $comment->save();
+
+    return back()->with('success', 'Comentario publicado');
+}
+
     
 
     // mostrar comentarios

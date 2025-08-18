@@ -26,7 +26,7 @@
 
     @include('partials.header')
 
-    <main class="flex-grow flex flex-col items-center px-6 mt-32">
+    <main class="flex-grow flex flex-col items-center px-6 mt-48">
 
     <h1 class="text-4xl md:text-6xl font-extrabold text-center text-lime-600 underline mb-12 tracking-tight">POST</h1>
 
@@ -67,31 +67,31 @@
 
                 <!-- Botones -->
                 <div class="flex flex-wrap justify-between items-center mt-8 gap-4">
-    <a href="{{ url('/') }}"
-       class="px-8 py-3 w-full md:w-60 text-xl text-center bg-purple-600 text-black border-2 border-black font-bold rounded-lg hover:bg-purple-700 hover:scale-105 transition transform flex flex-col items-center gap-2">
-        <i class="fas fa-home text-2xl"></i>
-        Home
-    </a>
+                    <a href="{{ url('/') }}"
+                       class="px-8 py-3 w-full md:w-60 text-xl text-center bg-purple-600 text-black border-2 border-black font-bold rounded-lg hover:bg-purple-700 hover:scale-105 transition transform flex flex-col items-center gap-2">
+                        <i class="fas fa-home text-2xl"></i>
+                        Home
+                    </a>
 
-    @auth
-    @if (Auth::id() === $post->user_id)
-        <a href="{{ route('edit', $post->id) }}"
-           class="px-8 py-3 w-full md:w-60 text-xl text-center bg-indigo-500 text-black border-2 border-black font-bold rounded-lg hover:bg-indigo-600 hover:scale-105 transition transform flex flex-col items-center gap-2">
-            <i class="fas fa-edit text-2xl"></i>
-            Editar
-        </a>
-        <form action="{{ route('delete', $post->id) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este post?');" class="w-full md:w-60">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                class="px-8 py-3 w-full text-xl text-center bg-red-500 border-2 border-black text-black font-bold rounded-lg hover:bg-red-600 hover:scale-105 transition transform flex flex-col items-center gap-2">
-                <i class="fas fa-trash-alt text-2xl"></i>
-                Eliminar
-            </button>
-        </form>
-    @endif
-    @endauth
-</div>
+                    @auth
+                    @if (Auth::id() === $post->user_id)
+                        <a href="{{ route('edit', $post->id) }}"
+                           class="px-8 py-3 w-full md:w-60 text-xl text-center bg-indigo-500 text-black border-2 border-black font-bold rounded-lg hover:bg-indigo-600 hover:scale-105 transition transform flex flex-col items-center gap-2">
+                            <i class="fas fa-edit text-2xl"></i>
+                            Editar
+                        </a>
+                        <form action="{{ route('delete', $post->id) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este post?');" class="w-full md:w-60">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="px-8 py-3 w-full text-xl text-center bg-red-500 border-2 border-black text-black font-bold rounded-lg hover:bg-red-600 hover:scale-105 transition transform flex flex-col items-center gap-2">
+                                <i class="fas fa-trash-alt text-2xl"></i>
+                                Eliminar
+                            </button>
+                        </form>
+                    @endif
+                    @endauth
+                </div>
 
             </div>
 
@@ -136,27 +136,55 @@
                     </button>
 
                     <div x-show="open" x-transition class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-                        @forelse ($post->comments as $comment)
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm relative">
-                            <p class="font-semibold mb-1">{{ $comment->user->username ?? 'Anónimo' }}:</p>
-                            <p class="italic mb-2 text-gray-700">"{{ $comment->comment }}"</p>
-                            <p class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($comment->publish_date)->format('d/m/Y') }}</p>
+                        @php
+                            $renderComments = function($comments, $level = 0) use (&$renderComments) {
+                                foreach ($comments as $comment) {
+                                    echo '<div class="bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm relative ml-' . ($level * 6) . '">';
+                                    echo '<p class="font-semibold mb-1">' . e($comment->user->username ?? 'Anónimo') . ':</p>';
+                                    echo '<p class="mb-2 text-black">' . e($comment->comment) . '</p>';
+                                    echo '<p class="text-xs text-black">' . \Carbon\Carbon::parse($comment->publish_date)->format('d/m/Y') . '</p>';
 
-                            @auth
-                            @if (Auth::id() === $comment->user_id)
-                                <form action="{{ route('comments.delete', $comment->id) }}" method="POST" class="absolute top-3 right-3">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-800 text-sm" aria-label="Eliminar comentario">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            @endif
-                            @endauth
-                        </div>
-                        @empty
-                        <p class="text-gray-500">No hay comentarios aún.</p>
-                        @endforelse
+                                    if(auth()->check()) {
+                                        echo '<div x-data="{ openReply: false }" class="mt-2">';
+                                        echo '<button @click="openReply = !openReply" class="text-sm text-blue-600 hover:underline">Responder</button>';
+                                        echo '<div x-show="openReply" class="mt-2">';
+                                        echo '<form method="POST" action="' . route('comments.store') . '">';
+                                        echo csrf_field();
+                                        echo '<textarea name="comment" rows="2" class="w-full p-2 border rounded text-black" placeholder="Escribe tu respuesta..."></textarea>';
+                                        echo '<input type="hidden" name="post_id" value="' . $comment->post_id . '">';
+                                        echo '<input type="hidden" name="parent_id" value="' . $comment->id . '">';
+                                        echo '<button type="submit" class="mt-2 px-4 py-1 bg-lime-600 text-white rounded hover:bg-lime-700">Enviar</button>';
+                                        echo '</form>';
+                                        echo '</div>';
+                                        echo '</div>';
+                                    }
+
+                                    if(auth()->check() && auth()->id() === $comment->user_id) {
+                                        echo '<form action="' . route('comments.delete', $comment->id) . '" method="POST" class="absolute top-3 right-3">';
+                                        echo csrf_field();
+                                        echo method_field('DELETE');
+                                        echo '<button type="submit" class="text-red-600 hover:text-red-800 text-sm" aria-label="Eliminar comentario">';
+                                        echo '<i class="fas fa-trash-alt"></i>';
+                                        echo '</button>';
+                                        echo '</form>';
+                                    }
+
+                                    if($comment->replies->count()) {
+                                        echo '<div class="mt-4 space-y-2">';
+                                        $renderComments($comment->replies, $level + 1);
+                                        echo '</div>';
+                                    }
+
+                                    echo '</div>';
+                                }
+                            };
+                        @endphp
+
+                        @if ($post->comments->whereNull('parent_id')->count())
+                            {!! $renderComments($post->comments->whereNull('parent_id')) !!}
+                        @else
+                            <p class="text-gray-500">No hay comentarios aún.</p>
+                        @endif
                     </div>
                 </div>
 
@@ -167,7 +195,6 @@
     </section>
 
 </main>
-
 
     @include('partials.footer')
 
