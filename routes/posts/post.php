@@ -26,4 +26,7 @@ Route::get('/{id}', [CommentController::class, 'show'])
     ->where('id', '[0-9]+')
     ->name('comments.show');
 
-
+Route::get('/admin/posts', [PostController::class, 'indexPosts'])->name('admin.posts');
+Route::get('/admin/posts/{id}/edit', [PostController::class, 'edit'])->name('edit');
+Route::put('/admin/posts/{id}', [PostController::class, 'update'])->name('update');
+Route::delete('/admin/posts/{id}', [PostController::class, 'delete'])->name('delete');

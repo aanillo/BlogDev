@@ -128,7 +128,7 @@
         <p class="text-lg text-neutral-700 mb-8">
             Comparte tus experiencias, aprende de otros y forma parte de un espacio donde la programación se vive con pasión.
         </p>
-        <a href="{{ route('doRegister') }}">
+        <a href="{{ route('doLogin') }}">
             <button class="bg-neutral-800 text-lime-500 text-xl font-bold px-8 py-3 rounded-lg border-2 border-lime-500 hover:bg-lime-500 hover:text-black hover:border-black transform hover:scale-105 transition duration-500">
                 Publicar mi primer post
             </button>

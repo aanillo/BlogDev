@@ -143,7 +143,7 @@ public function deleteUser(Request $request){
 public function indexUsers()
     {
         $users = User::all();
-        return view('usersAdminView', compact('users'));
+        return view('admin/users', compact('users'));
     }
 
 

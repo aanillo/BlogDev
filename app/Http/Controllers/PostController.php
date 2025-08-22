@@ -45,7 +45,7 @@ class PostController extends Controller
 
     public function indexPosts() {
         $posts = Post::all();
-        return view('postsAdminView', compact('posts'));
+        return view('admin/posts', compact('posts'));
     }
 
     public function showInsert() {

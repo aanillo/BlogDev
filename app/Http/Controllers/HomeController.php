@@ -31,16 +31,6 @@ class HomeController extends Controller
 }
 
 
-    
-
-    // página principal usuario logueado
-    public function indexLog()
-{
-    $user = auth()->user();
-    $randomBooks = Book::all()->shuffle()->take(7);
-    $randomWriters = Writer::all()->shuffle()->take(16);
-    return view('homeLog', compact('user', 'randomBooks', 'randomWriters'));
-}
 
 
 // página principal de admin
@@ -53,7 +43,7 @@ public function indexAdmin()
         abort(403, 'No tienes permiso para acceder a esta página.');
     }
 
-    return view('adminHome', compact('user'));
+    return view('admin/home', compact('user'));
 }
 
 }

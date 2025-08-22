@@ -69,7 +69,7 @@ class CommentController extends Controller
 public function indexComments() 
 {
     $comments = Comment::with(['post:id,title', 'user:id,username'])->get();
-    return view('commentsAdminView', compact('comments'));
+    return view('admin/comments', compact('comments'));
 }
 
 
