@@ -17,7 +17,6 @@
     <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-48">
 
         <!-- Formulario para inicio de sesión -->
-
         <form method="POST" action="{{ route('doLogin') }}"
               class="w-full max-w-7xl px-12 py-6 rounded-2xl shadow-xl text-lime-300 bg-neutral-800 mb-8">
             @csrf
@@ -55,17 +54,17 @@
 
                     <!-- Botones debajo de los campos -->
                     <div class="flex flex-col items-center gap-6 mt-4">
-                        
-                        <div class="flex flex-row gap-10">
-                            <button type="submit"
-                                class="bg-green-800 font-bold w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110">
-                            Iniciar sesión
-                        </button>
 
-                        <button type="reset"
-                                class="bg-red-600 font-bold w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110">
-                            Cancelar
-                        </button>
+                        <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 w-full justify-center">
+                            <button type="submit"
+                                class="bg-green-800 font-bold w-full sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110">
+                                Iniciar sesión
+                            </button>
+
+                            <button type="reset"
+                                class="bg-red-600 font-bold w-full sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110">
+                                Cancelar
+                            </button>
                         </div>
 
                         <div class="text-center mt-16">
@@ -103,4 +102,3 @@
 
 </body>
 </html>
-
