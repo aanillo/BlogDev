@@ -15,30 +15,30 @@
 
     <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-36">
         
-        <section class="text-center mb-8 w-[80%] mx-auto px-10 py-10 bg-neutral-100">
+    <section class="text-center mb-8 w-full sm:w-[90%] md:w-[80%] mx-auto px-4 md:px-10 py-10 bg-neutral-100">
+    <div class="grid grid-cols-1 md:grid-cols-[70%_30%] items-center gap-6 shadow-2xl rounded-2xl p-6 md:p-10 bg-white border border-neutral-300">
+        <div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl text-center text-black mb-4 md:mb-6">
+                El rincón del dev: La web del programador
+            </h1>
+            <h3 class="text-base sm:text-lg md:text-xl">
+                Este es tu espacio para compartir vivencias y experiencias en el fascinante mundo de la programación: cómo te iniciaste, por qué elegiste cierta tecnología, tus aprendizajes, desafíos y la forma en que entiendes y vives el desarrollo de software.
+            </h3>
+        </div>
 
-  <div class="grid grid-cols-[70%_30%] items-center gap-1 shadow-2xl rounded-2xl p-10 bg-white border border-neutral-300">
-    <div>
-        <h1 class="text-5xl text-center text-black mb-6">
-      El rincón del dev: La web del programador
-    </h1>
-    <h3 class="text-xl">
-        Este es tu espacio para compartir vivencias y experiencias en el fascinante mundo de la programación: cómo te iniciaste, por qué elegiste cierta tecnología, tus aprendizajes, desafíos y la forma en que entiendes y vives el desarrollo de software.
-    </h3>
+        <div class="mt-6 md:mt-0">
+            <img 
+                src="{{ asset('img/logoSinFondo.png') }}" 
+                class="w-full h-auto object-contain rounded-md max-h-60" 
+                alt="logo"
+            >
+        </div>
     </div>
-
-    <div>
-        <img 
-      src="{{ asset('img/logoSinFondo.png') }}" 
-      class="w-full h-auto object-contain rounded-md max-h-60" 
-      alt="logo"
-    >
-    </div>
-  </div>
 </section>
 
 
-    <section class="grid grid-cols-4 w-[90%] items-center gap-6 mb-10">
+
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-[90%] items-center gap-6 mb-10">
         <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-emerald-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
             <h2 class="text-3xl underline mb-8"><strong>INICIOS</strong></h2>
             <h3 class="text-2xl mb-8">Los primeros pasos de la comunidad</h3>
@@ -80,7 +80,7 @@
     }" 
     class="w-[90%] mx-auto mt-20"
 >
-    <h2 class="text-4xl font-bold text-center mb-12 text-black">🆕 Últimos Posts</h2>
+    <h2 class="text-4xl font-bold text-center mb-12 text-black">Últimos Posts</h2>
 
     <template x-if="posts.length === 0">
         <p class="text-center text-neutral-600 text-xl italic">
@@ -122,9 +122,9 @@
 
 
 <!-- CALL TO ACTION -->
-<section class="mt-20 mb-16 bg-lime-100 py-16 text-center rounded-2xl shadow-inner w-[90%] mx-auto border border-lime-500">
+<section class="mt-20 mb-16 bg-lime-100 p-16 text-center rounded-2xl shadow-inner w-[90%] mx-auto border border-lime-500">
     @guest
-        <h2 class="text-4xl font-bold text-black mb-4">🚀 Únete a la Comunidad</h2>
+        <h2 class="text-4xl font-bold text-black mb-4">Únete a la Comunidad</h2>
         <p class="text-lg text-neutral-700 mb-8">
             Comparte tus experiencias, aprende de otros y forma parte de un espacio donde la programación se vive con pasión.
         </p>
@@ -137,7 +137,7 @@
 
     @auth
         <h2 class="text-4xl font-bold text-black mb-4">
-            👋 Bienvenido, {{ Auth::user()->username }}
+            Bienvenido, {{ Auth::user()->username }}
         </h2>
         <p class="text-lg text-neutral-700 mb-8">
             ¿Listo para compartir tus ideas con la comunidad?

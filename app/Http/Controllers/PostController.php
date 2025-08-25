@@ -62,7 +62,10 @@ class PostController extends Controller
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
     ], [
         'title.required' => 'El título es obligatorio.',
+        'title.string'   => 'El título debe ser un texto válido.',
+        'title.max'      => 'El título no puede superar los 255 caracteres.',
         'type.required'  => 'El tipo es obligatorio.',
+        'type.in'       => 'El tipo seleccionado no es válido. Solo se permiten Inicio, Tecnología, Experiencia u Opinión.',
         'post.required'  => 'El contenido del post es obligatorio.',
         'post.min' => 'El post debe tener mínimo 10 caracteres.',
         'image.image'    => 'El archivo debe ser una imagen.',

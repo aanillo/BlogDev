@@ -159,16 +159,16 @@
                     </label>
 
                     <!-- Botones Registrarse y Cancelar debajo de los campos -->
-                    <div class="flex flex-row gap-10 mt-4 mb-6">
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 w-full justify-center">
                         <button
                             type="submit"
-                            class="bg-green-800 font-bold w-40 sm:w-64 text-lime-300 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="bg-green-800 font-bold w-full sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110"
                         >
                             Registrarse
                         </button>
                         <button
                             type="reset"
-                            class="bg-red-600 font-bold w-40 sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="bg-red-600 font-bold w-full sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110"
                         >
                             Cancelar
                         </button>
@@ -188,7 +188,7 @@
                         <h3 class="text-xl text-lime-300 mb-2">Volver a Home:</h3>
                         <a
                             href="{{ url('/') }}"
-                            class="btnHome w-40 sm:w-64 bg-purple-800 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-1.5 rounded-md hover:bg-purple-900 transform transition-transform duration-1000 ease-in-out hover:scale-110"
+                            class="btnHome w-64 bg-purple-800 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-1.5 rounded-md hover:bg-purple-900 transform transition-transform duration-1000 ease-in-out hover:scale-110"
                         >
                             Home
                         </a>
