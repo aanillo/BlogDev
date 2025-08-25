@@ -59,7 +59,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
     
-        return redirect()->route('login.show');
+        return redirect()->route('login.show')->with('success', 'Usuario registrado correctamente');
     }
     
 
@@ -150,7 +150,7 @@ public function indexUsers()
     // formulario para insertar usuario
 
     public function showInsert(){
-        return view('insertUserView');
+        return view('admin/register');
     }
 
 
