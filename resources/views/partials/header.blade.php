@@ -14,16 +14,15 @@
 
       <!-- Botón mobile -->
       <button 
-  @click="navOpen = !navOpen" 
-  class="md:hidden focus:outline-none text-lime-300"
->
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" 
-       viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
-</button>
-
+        @click="navOpen = !navOpen" 
+        class="md:hidden focus:outline-none text-lime-300"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" 
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
       <!-- Navegación desktop -->
       <div class="hidden md:flex flex-grow justify-center text-lime-400">
@@ -51,11 +50,13 @@
               Opiniones
             </a>
             @auth
-              <a href="{{ route('insert.show', ['id' => auth()->user()->id]) }}" 
-                 class="transition-transform duration-300 hover:scale-125 
-                 {{ request()->routeIs('insert.show') ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
-                Crea tu post
-              </a>
+              @if(auth()->user()->role !== 'admin')
+                <a href="{{ route('insert.show', ['id' => auth()->user()->id]) }}" 
+                   class="transition-transform duration-300 hover:scale-125 
+                   {{ request()->routeIs('insert.show') ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
+                  Crea tu post
+                </a>
+              @endif
             @else
               <a href="{{ route('login.show') }}" 
                  class="transition-transform duration-300 hover:scale-125 text-lime-400">
@@ -85,7 +86,7 @@
             @click.away="open = false"
             class="absolute text-xl mt-2 w-48 bg-[#1f1b16] border border-lime-300 text-lime-300 rounded-lg shadow-lg py-2 z-50 -translate-x-20"
           >
-          @guest
+            @guest
               <a href="{{ route('login.show') }}"
                  class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
                  {{ request()->routeIs('login.show') ? 'text-lime-300 underline' : 'text-lime-400' }}">
@@ -99,21 +100,29 @@
             @endguest
 
             @auth
-              <a href="{{ route('profile', ['id' => auth()->user()->id]) }}"
-                 class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
-                 {{ request()->routeIs('profile') || request()->is('users/profile*') ? 'text-lime-300 underline' : 'text-lime-400' }}">
-                Perfil
-              </a>
-              <a href="{{ route('user.posts', ['id' => auth()->user()->id]) }}"
-                 class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
-                        {{ request()->routeIs('user.posts') ? 'text-lime-300 underline' : 'text-lime-400' }}">
-                Tus posts
-              </a>
-              <a href="{{ route('logout.confirm') }}"
-                 class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
-                        {{ request()->routeIs('logout') || request()->is('users/logout*') ? 'text-lime-300 underline' : 'text-lime-400' }}">
-                Cerrar sesión
-              </a>
+              @if(auth()->user()->rol === 'admin')
+                <a href="{{ route('logout.confirm') }}"
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
+                   {{ request()->routeIs('logout') || request()->is('users/logout*') ? 'text-lime-300 underline' : 'text-lime-400' }}">
+                   Cerrar sesión
+                </a>
+              @else
+                <a href="{{ route('profile', ['id' => auth()->user()->id]) }}"
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
+                   {{ request()->routeIs('profile') || request()->is('users/profile*') ? 'text-lime-300 underline' : 'text-lime-400' }}">
+                   Perfil
+                </a>
+                <a href="{{ route('user.posts', ['id' => auth()->user()->id]) }}"
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
+                   {{ request()->routeIs('user.posts') ? 'text-lime-300 underline' : 'text-lime-400' }}">
+                   Tus posts
+                </a>
+                <a href="{{ route('logout.confirm') }}"
+                   class="block px-4 py-2 hover:bg-lime-200 hover:text-black transition duration-200
+                   {{ request()->routeIs('logout') || request()->is('users/logout*') ? 'text-lime-300 underline' : 'text-lime-400' }}">
+                   Cerrar sesión
+                </a>
+              @endif
             @endauth
           </div>
         </div>
@@ -144,14 +153,20 @@
     Opiniones</a>
     <hr>
     @auth
-      <a href="{{ route('insert.show', ['id' => auth()->user()->id]) }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
-      {{ request()->routeIs('insert.show') ? 'text-lime-300 scale-105 underline' : 'text-lime-400' }}">Crea tu post</a>
-      <a href="{{ route('profile', ['id' => auth()->user()->id]) }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
-      {{ request()->routeIs('profile') || request()->is('users/profile*') ? 'text-lime-300 scale-105 underline' : 'text-lime-400' }}">Perfil</a>
-      <a href="{{ route('user.posts', ['id' => auth()->user()->id]) }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
-      {{ request()->routeIs('user.posts') ? 'text-lime-300 scale-105 underline' : 'text-lime-400' }}">Tus posts</a>
-      <a href="{{ route('logout.confirm') }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
-      {{ request()->routeIs('logout') || request()->is('users/logout*') ? 'text-lime-300 scale-105 underline' : 'text-lime-400' }}">Cerrar sesión</a>
+      @if(auth()->user()->rol === 'admin')
+        <a href="{{ route('logout.confirm') }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
+        {{ request()->routeIs('logout') || request()->is('users/logout*') ? 'text-lime-300 underline' : 'text-lime-400' }}">
+        Cerrar sesión</a>
+      @else
+        <a href="{{ route('insert.show', ['id' => auth()->user()->id]) }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
+        {{ request()->routeIs('insert.show') ? 'text-lime-300 scale-105 underline' : 'text-lime-400' }}">Crea tu post</a>
+        <a href="{{ route('profile', ['id' => auth()->user()->id]) }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
+        {{ request()->routeIs('profile') || request()->is('users/profile*') ? 'text-lime-300 scale-105 underline' : 'text-lime-400' }}">Perfil</a>
+        <a href="{{ route('user.posts', ['id' => auth()->user()->id]) }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
+        {{ request()->routeIs('user.posts') ? 'text-lime-300 scale-105 underline' : 'text-lime-400' }}">Tus posts</a>
+        <a href="{{ route('logout.confirm') }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
+        {{ request()->routeIs('logout') || request()->is('users/logout*') ? 'text-lime-300 underline' : 'text-lime-400' }}">Cerrar sesión</a>
+      @endif
     @else
       <a href="{{ route('login.show') }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
       {{ request()->routeIs('login.show') ? 'text-lime-300 scale-105 underline' : 'text-lime-400' }}">Iniciar sesión</a>

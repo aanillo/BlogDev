@@ -160,6 +160,7 @@ public function indexUsers()
             "username" => "required|regex:/^[\pL\s0-9]+$/u|min:4|max:20|unique:users,username",
             "email" => "required|email:rfc,dns|unique:users,email",
             "fecha_nacimiento" => "required|date|before_or_equal:" . now()->subYears(16)->format('Y-m-d'),
+            "rol" => "required|in:user,admin",
             "password" => "required|min:8|max:20|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/",
             "password_repeat" => "required|same:password"
         ], [
@@ -174,6 +175,8 @@ public function indexUsers()
             "fecha_nacimiento.required" => "Debes ingresar tu fecha de nacimiento.",
             "fecha_nacimiento.date" => "La fecha de nacimiento no es válida.",
             "fecha_nacimiento.before_or_equal" => "Debes tener al menos 16 años para registrarte.",
+            "rol.required" => "Debes seleccionar un rol.",
+            "rol.in" => "El rol seleccionado no es válido.",
             "password.required" => "La contraseña es obligatoria.",
             "password.min" => "La contraseña debe contener al menos 8 caracteres.",
             "password.max" => "La contraseña no debe superar los 20 caracteres.",
@@ -376,7 +379,5 @@ public function showPostsByUser($id)
 
     return view('user/showAllPosts', compact('posts', 'user'));
 }
-
-
 
 }

@@ -22,7 +22,7 @@
         <!-- Formulario de registro -->
         <form
             method="POST"
-            action="{{ route('doRegister') }}"
+            action="{{ route('doInsertUser') }}"
             class="w-full max-w-7xl px-12 py-6 rounded-2xl shadow-xl text-lime-300 bg-neutral-800 mb-8"
         >
             @csrf
@@ -33,7 +33,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-4 min-h-[500px]">
 
                 <!-- Columna formulario -->
-                <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-4">
 
                     <label for="username" class="text-left">
                         <span class="block text-lg font-medium">Username:</span>
@@ -90,6 +90,27 @@
                         <small class="text-red-500 text-lg font-bold">{{ $message }}</small>
                         @enderror
                     </label>
+
+                    <label class="text-left block">
+    <span class="block text-lg font-medium">Rol:</span>
+
+    <div class="flex gap-6 mt-1">
+        <label class="flex items-center gap-2">
+            <input type="radio" name="rol" value="user" checked class="accent-lime-300" />
+            <span>User</span>
+        </label>
+
+        <label class="flex items-center gap-2">
+            <input type="radio" name="rol" value="admin" class="accent-lime-300" />
+            <span>Admin</span>
+        </label>
+    </div>
+
+    @error('rol')
+        <small class="text-red-500 text-lg font-bold">{{ $message }}</small>
+    @enderror
+</label>
+
 
                     <label for="password" class="text-left" x-data="{ show: false }">
                         <span class="block text-lg font-medium">Contraseña:</span>
@@ -159,7 +180,7 @@
                     </label>
 
                     <!-- Botones Registrarse y Cancelar debajo de los campos -->
-                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 w-full justify-center">
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 w-full justify-center mt-4 mb-4">
                         <button
                             type="submit"
                             class="bg-green-800 font-bold w-full sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110"
@@ -184,7 +205,7 @@
                     />
 
                     <!-- Botón Volver a Home debajo de la imagen -->
-                    <div class="flex flex-col items-center gap-2 mt-8">
+                    <div class="flex flex-col items-center gap-2 mt-16">
                         <h3 class="text-xl text-lime-300 mb-2">Volver atrás:</h3>
                         <a
                             href="{{ url()->previous() }}"
