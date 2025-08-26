@@ -113,16 +113,17 @@
         </div>
 
         <!-- Botones -->
-        <div class="flex justify-center gap-6 mt-10">
-            <button type="submit"
-                class="bg-green-700 hover:bg-green-800 text-lime-300 text-xl font-bold px-8 py-3 rounded-xl border-2 border-lime-300 shadow-lg transform hover:scale-110 transition">
-                <i class="fa-solid fa-pen-to-square mr-2"></i> Actualizar
-            </button>
-            <button type="reset"
-                class="bg-red-600 hover:bg-red-700 text-lime-300 text-xl font-bold px-8 py-3 rounded-xl border-2 border-lime-300 shadow-lg transform hover:scale-110 transition">
-                <i class="fa-solid fa-xmark mr-2"></i> Cancelar
-            </button>
-        </div>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-10 w-full">
+    <button type="submit"
+        class="w-full sm:w-auto bg-green-700 hover:bg-green-800 text-lime-300 text-xl font-bold px-8 py-3 rounded-xl border-2 border-lime-300 shadow-lg transform hover:scale-110 transition">
+        <i class="fa-solid fa-pen-to-square mr-2"></i> Actualizar
+    </button>
+    <button type="reset"
+        class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-lime-300 text-xl font-bold px-8 py-3 rounded-xl border-2 border-lime-300 shadow-lg transform hover:scale-110 transition">
+        <i class="fa-solid fa-xmark mr-2"></i> Cancelar
+    </button>
+</div>
+
 
     </form>
 </main>

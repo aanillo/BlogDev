@@ -19,36 +19,38 @@
             ADMIN
         </h1>
 
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-lime-200 border-2 border-neutral-700 p-10 w-[80%] rounded-2xl shadow-xl">
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-lime-200 border-2 border-neutral-700 p-10 w-full sm:w-[80%] rounded-2xl shadow-xl mb-8 md:mb-0">
 
-            <!-- Usuarios -->
-            <div class="flex flex-col items-center">
-                <a href="{{ route('admin.users') }}" 
-                   class="w-72 h-56 bg-neutral-800 flex flex-col items-center justify-between text-lime-300 text-7xl border-2 border-lime-300 rounded-xl p-6 hover:bg-black hover:text-lime-500 hover:scale-105 transition-transform shadow-md">
-                    <h1 class="text-2xl font-bold mb-4">USUARIOS</h1>
-                    <i class="fas fa-users"></i>
-                </a>
-            </div>
+    <!-- Usuarios -->
+    <div class="flex flex-col items-center">
+        <a href="{{ route('admin.users') }}" 
+           class="w-[98%] sm:w-72 h-56 bg-neutral-800 flex flex-col items-center justify-between text-lime-300 text-7xl border-2 border-lime-300 rounded-xl p-6 hover:bg-black hover:text-lime-500 hover:scale-105 transition-transform shadow-md">
+            <h1 class="text-2xl font-bold mb-4">USUARIOS</h1>
+            <i class="fas fa-users"></i>
+        </a>
+    </div>
 
-            <!-- Posts -->
-            <div class="flex flex-col items-center">
-                <a href="{{ route('admin.posts') }}" 
-                   class="w-72 h-56 bg-neutral-800 flex flex-col items-center justify-between text-lime-300 text-7xl border-2 border-lime-300 rounded-xl p-6 hover:bg-black hover:text-lime-500 hover:scale-105 transition-transform shadow-md">
-                    <h1 class="text-2xl font-bold mb-4">POSTS</h1>
-                    <i class="fas fa-book"></i>
-                </a>
-            </div>
+    <!-- Posts -->
+    <div class="flex flex-col items-center">
+        <a href="{{ route('admin.posts') }}" 
+           class="w-[98%] sm:w-72 h-56 bg-neutral-800 flex flex-col items-center justify-between text-lime-300 text-7xl border-2 border-lime-300 rounded-xl p-6 hover:bg-black hover:text-lime-500 hover:scale-105 transition-transform shadow-md">
+            <h1 class="text-2xl font-bold mb-4">POSTS</h1>
+            <i class="fas fa-book"></i>
+        </a>
+    </div>
 
-            <!-- Comentarios -->
-            <div class="flex flex-col items-center">
-                <a href="{{ route('admin.comments') }}" 
-                   class="w-72 h-56 bg-neutral-800 flex flex-col items-center justify-between text-lime-300 text-7xl border-2 border-lime-300 rounded-xl p-6 hover:bg-black hover:text-lime-500 hover:scale-105 transition-transform shadow-md">
-                    <h1 class="text-2xl font-bold mb-4">COMENTARIOS</h1>
-                    <i class="fas fa-comment"></i>
-                </a>
-            </div>
+    <!-- Comentarios -->
+    <div class="flex flex-col items-center">
+        <a href="{{ route('admin.comments') }}" 
+           class="w-[98%] sm:w-72 h-56 bg-neutral-800 flex flex-col items-center justify-between text-lime-300 text-7xl border-2 border-lime-300 rounded-xl p-6 hover:bg-black hover:text-lime-500 hover:scale-105 transition-transform shadow-md">
+            <h1 class="text-2xl font-bold mb-4">COMENTARIOS</h1>
+            <i class="fas fa-comment"></i>
+        </a>
+    </div>
 
-        </section>
+</section>
+
+
 
     </main>
 

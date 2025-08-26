@@ -72,9 +72,10 @@
                 />
             </div>
 
-            <!-- Lista de usuarios -->
+            <!-- Lista de comentarios -->
             <h2 class="text-2xl font-bold text-center mb-6">Lista de comentarios</h2>
-            <table class="w-full border border-neutral-300 rounded-lg overflow-hidden shadow-md">
+            <div class="w-full overflow-x-auto">
+                <table class="w-full border border-neutral-300 rounded-lg overflow-hidden shadow-md whitespace-nowrap">
                 <thead>
                     <tr class="bg-neutral-800 text-left text-lg text-white">
                         <th class="px-4 py-2">ID</th>
@@ -106,6 +107,8 @@
                     </template>
                 </tbody>
             </table>
+            </div>
+    
 
             <!-- Paginación -->
             <div class="flex justify-center mt-6 gap-6 items-center text-neutral-800 text-lg" x-show="totalPages > 1">

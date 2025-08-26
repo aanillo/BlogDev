@@ -64,7 +64,7 @@
         >
             <!-- Título -->
             <div class="bg-neutral-900 w-full md:w-[60%] mx-auto border-2 border-lime-500 text-lime-500 px-8 py-6 rounded-xl shadow-md mb-12 text-center transition transform hover:scale-105">
-                <h1 class="text-5xl font-bold leading-tight">Posts de {{ $user->username }}</h1>
+                <h1 class="text-3xl sm:text-5xl font-bold leading-tight">Posts de {{ $user->username }}</h1>
             </div>
 
             <!-- Barra de búsqueda -->
@@ -98,8 +98,8 @@
 
                         <div class="flex-1 p-6 flex flex-col justify-between">
 
-                            <div class="flex justify-between items-center text-sm text-neutral-700 mb-4">
-                                <p class="font-semibold text-neutral-900">{{ $user->username }}</p>
+                            <div class="flex flex-wrap gap-2 justify-between items-center text-sm text-neutral-700 mb-4">
+                                <p class="truncate max-w-[40%]">{{ $user->username }}</p>
                                 <div class="bg-neutral-800 border border-lime-500 text-lime-400 px-3 py-1 rounded-lg text-sm">
                                     <span x-text="post.type"></span>
                                 </div>

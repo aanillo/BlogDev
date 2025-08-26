@@ -101,13 +101,13 @@
         </div>
 
         <!-- Botones -->
-        <div class="flex justify-center gap-6 mt-10">
+        <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-10 w-full">
             <button type="submit"
-                class="bg-green-700 hover:bg-green-800 text-lime-300 text-xl font-bold px-8 py-3 rounded-xl border-2 border-lime-300 shadow-lg transform hover:scale-110 transition">
+                class="w-full sm:w-auto bg-green-700 hover:bg-green-800 text-lime-300 text-xl font-bold px-8 py-3 rounded-xl border-2 border-lime-300 shadow-lg transform hover:scale-110 transition">
                 <i class="fa-solid fa-paper-plane mr-2"></i> Publicar
             </button>
             <button type="reset"
-                class="bg-red-600 hover:bg-red-700 text-lime-300 text-xl font-bold px-8 py-3 rounded-xl border-2 border-lime-300 shadow-lg transform hover:scale-110 transition">
+                class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-lime-300 text-xl font-bold px-8 py-3 rounded-xl border-2 border-lime-300 shadow-lg transform hover:scale-110 transition">
                 <i class="fa-solid fa-xmark mr-2"></i> Cancelar
             </button>
         </div>

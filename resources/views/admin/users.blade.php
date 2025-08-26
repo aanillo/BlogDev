@@ -54,14 +54,14 @@
         >
 
             <!-- Registrar usuario -->
-            <div class="flex items-center gap-8 mb-10 justify-center items-center">
+            <div class="flex flex-wrap items-center gap-8 mb-10 justify-center items-center">
                 <a href="{{ route('insertUser') }}"
-                    class="flex flex-col items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-lime-600 text-black font-bold rounded-md hover:bg-lime-700 transition transform hover:scale-105">
+                    class="flex flex-col items-center justify-center text-center gap-2 px-8 py-3 w-full md:w-60 text-xl border-2 border-black bg-lime-600 text-black font-bold rounded-md hover:bg-lime-700 transition transform hover:scale-105">
                     <i class="fas fa-user text-2xl"></i>
                     <span>Registrar usuario</span>
                 </a>
                 <a href="{{ route('admin') }}"
-                    class="flex flex-col items-center justify-center gap-2 px-8 py-3 w-60 text-xl border-2 border-black bg-purple-600 text-black font-bold rounded-md hover:bg-purple-700 transition transform hover:scale-105">
+                    class="flex flex-col items-center justify-center gap-2 px-8 py-3 w-full md:w-60 text-xl border-2 border-black bg-purple-600 text-black font-bold rounded-md hover:bg-purple-700 transition transform hover:scale-105">
                     <i class="fas fa-home text-2xl"></i>
                     <span>Volver</span>
                 </a>
@@ -77,45 +77,51 @@
                 />
             </div>
 
+            
             <!-- Lista de usuarios -->
-            <h2 class="text-2xl font-bold text-center mb-6">Lista de usuarios</h2>
-            <table class="w-full border border-neutral-300 rounded-lg overflow-hidden shadow-md">
-                <thead>
-                    <tr class="bg-neutral-800 text-left text-lg text-white">
-                        <th class="px-4 py-2">ID</th>
-                        <th class="px-4 py-2">Username</th>
-                        <th class="px-4 py-2">Email</th>
-                        <th class="px-4 py-2">Fecha nacimiento</th>
-                        <th class="px-4 py-2">Rol</th>
-                        <th class="px-4 py-2">Fecha registro</th>
-                        <th class="px-4 py-2 text-center">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <template x-for="user in paginatedUsers" :key="user.id">
-                        <tr class="border-b text-black text-md even:bg-neutral-100 odd:bg-lime-100 hover:bg-lime-200 transition">
-                            <td class="px-4 py-2 font-bold" x-text="user.id"></td>
-                            <td class="px-4 py-2" x-text="user.username"></td>
-                            <td class="px-4 py-2" x-text="user.email"></td>
-                            <td class="px-4 py-2" x-text="formatDate(user.fecha_nacimiento)"></td>
-                            <td class="px-4 py-2 font-semibold text-lime-700" x-text="user.rol"></td>
-                            <td class="px-4 py-2" x-text="formatDate(user.fecha_registro)"></td>
-                            <td class="px-4 py-2 text-center space-x-4">
-                                <a :href="baseUrl + '/users/' + user.id + '/edit'" class="text-blue-600 font-bold hover:underline">
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-                                <form :action="baseUrl + '/users/' + user.id" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 font-bold hover:underline" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">
-                                        <i class="fas fa-trash"></i> Eliminar
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    </template>
-                </tbody>
-            </table>
+<h2 class="text-2xl font-bold text-center mb-6">Lista de usuarios</h2>
+
+<!-- Contenedor con scroll horizontal en móviles -->
+<div class="w-full overflow-x-auto">
+    <table class="w-full border border-neutral-300 rounded-lg overflow-hidden shadow-md whitespace-nowrap">
+        <thead>
+            <tr class="bg-neutral-800 text-left text-lg text-white">
+                <th class="px-4 py-2">ID</th>
+                <th class="px-4 py-2">Username</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Fecha nacimiento</th>
+                <th class="px-4 py-2">Rol</th>
+                <th class="px-4 py-2">Fecha registro</th>
+                <th class="px-4 py-2 text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template x-for="user in paginatedUsers" :key="user.id">
+                <tr class="border-b text-black text-md even:bg-neutral-100 odd:bg-lime-100 hover:bg-lime-200 transition">
+                    <td class="px-4 py-2 font-bold" x-text="user.id"></td>
+                    <td class="px-4 py-2" x-text="user.username"></td>
+                    <td class="px-4 py-2" x-text="user.email"></td>
+                    <td class="px-4 py-2" x-text="formatDate(user.fecha_nacimiento)"></td>
+                    <td class="px-4 py-2 font-semibold text-lime-700" x-text="user.rol"></td>
+                    <td class="px-4 py-2" x-text="formatDate(user.fecha_registro)"></td>
+                    <td class="px-4 py-2 text-center space-x-4">
+                        <a :href="baseUrl + '/users/' + user.id + '/edit'" class="text-blue-600 font-bold hover:underline">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <form :action="baseUrl + '/users/' + user.id" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 font-bold hover:underline" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</div>
+
 
             <!-- Paginación -->
             <div class="flex justify-center mt-6 gap-6 items-center text-neutral-800 text-lg" x-show="totalPages > 1">

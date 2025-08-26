@@ -63,9 +63,12 @@
             }"
             class="w-[80%] px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12"
         >
-            <div class="bg-neutral-900 w-[60%] mx-auto border-2 border-yellow-500 text-yellow-500 px-8 py-6 rounded-lg shadow-md mb-12 text-center transition transform hover:scale-105">
-                <h1 class="text-5xl font-bold leading-tight">Posts de {{ $type }}</h1>
-            </div>
+            
+            <!-- TÍTULO -->
+<div class="bg-neutral-900 w-full sm:w-[60%] mx-auto border-2 border-yellow-500 text-yellow-500 px-4 sm:px-8 py-6 rounded-lg shadow-md mb-12 text-center transition transform hover:scale-105">
+    <h1 class="text-3xl sm:text-5xl font-bold leading-tight break-words">Posts de {{ $type }}</h1>
+</div>
+
 
             <div class="mb-6 w-full max-w-md mx-auto relative">
     <!-- Icono de búsqueda -->
@@ -96,13 +99,13 @@
 
                         <div class="flex-1 p-6 flex flex-col justify-between">
 
-                            <div class="flex justify-between items-center text-sm text-neutral-700 mb-4">
-                                <p x-text="post.author"></p>
-                                <div class="bg-neutral-800 border border-yellow-500 text-yellow-500 px-3 py-1 rounded-lg text-sm">
-                                    <span x-text="post.type"></span>
-                                </div>
-                                <time class="text-neutral-500" x-text="post.created_at"></time>
-                            </div>
+                            <div class="flex flex-wrap gap-2 justify-between items-center text-sm text-neutral-700 mb-4">
+    <p class="truncate max-w-[40%]" x-text="post.author"></p>
+    <div class="bg-neutral-800 border border-yellow-500 text-yellow-500 px-3 py-1 rounded-lg text-sm">
+        <span x-text="post.type"></span>
+    </div>
+    <time class="text-neutral-500" x-text="post.created_at"></time>
+</div>
                             <p class="text-neutral-600 mt-8 mb-2 line-clamp-2" x-text="post.post"></p>
 
                             <a 

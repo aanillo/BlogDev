@@ -104,16 +104,16 @@
                 
 
                     <!-- Botones Registrarse y Cancelar debajo de los campos -->
-                    <div class="flex flex-row gap-10 mt-14 mb-6">
+                    <div class="flex flex-col sm:flex-row gap-6 mt-10 mb-6 w-full">
                         <button
                             type="submit"
-                            class="bg-green-800 font-bold w-40 sm:w-64 text-lime-300 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="w-full sm:w-64 bg-green-800 font-bold text-lime-300 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110 text-center"
                         >
                             Editar
                         </button>
                         <button
                             type="reset"
-                            class="bg-red-600 font-bold w-40 sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="w-full sm:w-64 bg-red-600 font-bold text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110 text-center"
                         >
                             Cancelar
                         </button>
@@ -129,11 +129,10 @@
                     />
 
                     <!-- Botón Volver a Home debajo de la imagen -->
-                    <div class="flex flex-col items-center gap-2 mt-8">
+                    <div class="flex flex-col sm:flex-row items-center gap-8 mt-8 mb-6 sm:mb-0 w-full justify-center">
     
-    <div class="flex flex-row gap-8 mt-1">
     <!-- Botón Atrás -->
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center w-full sm:w-auto">
         <h3 class="text-xl text-lime-300 mb-2">Volver atrás:</h3>
         <a
             href="{{ url()->previous() }}"
