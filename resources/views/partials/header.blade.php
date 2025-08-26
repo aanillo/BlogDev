@@ -29,30 +29,30 @@
         <div class="flex flex-col items-center text-center">
           <h1 class="text-3xl md:text-5xl text-lime-400 leading-tight">El rincón del dev</h1>
           <div class="flex text-xl gap-x-10 mt-3 text-lime-300 justify-center">
-            <a href="{{ url('/') }}" class="transition-transform duration-300 hover:scale-125 
+            <a href="{{ url('/') }}" class="transition-transform duration-300 hover:scale-105 
               {{ request()->is('/') ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
               Inicio
             </a>
-            <a href="{{ route('type', 'Inicio') }}" class="transition-transform duration-300 hover:scale-125 
+            <a href="{{ route('type', 'Inicio') }}" class="transition-transform duration-1000 hover:scale-125 
               {{ request()->routeIs('type') && request()->route('type') === 'Inicio' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
               Historias de inicio
             </a>
-            <a href="{{ route('type', 'Tecnología') }}" class="transition-transform duration-300 hover:scale-125 
+            <a href="{{ route('type', 'Tecnología') }}" class="transition-transform duration-1000 hover:scale-125
               {{ request()->routeIs('type') && request()->route('type') === 'Tecnología' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
               Tecnologías
             </a>
-            <a href="{{ route('type', 'Experiencia') }}" class="transition-transform duration-300 hover:scale-125 
+            <a href="{{ route('type', 'Experiencia') }}" class="transition-transform duration-1000 hover:scale-125
               {{ request()->routeIs('type') && request()->route('type') === 'Experiencia' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
               Experiencias
             </a>
-            <a href="{{ route('type', 'Opinión') }}" class="transition-transform duration-300 hover:scale-125 
+            <a href="{{ route('type', 'Opinión') }}" class="transition-transform duration-1000 hover:scale-125
               {{ request()->routeIs('type') && request()->route('type') === 'Opinión' ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
               Opiniones
             </a>
             @auth
               @if(auth()->user()->role !== 'admin')
                 <a href="{{ route('insert.show', ['id' => auth()->user()->id]) }}" 
-                   class="transition-transform duration-300 hover:scale-125 
+                   class="transition-transform duration-1000 hover:scale-125 
                    {{ request()->routeIs('insert.show') ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
                   Crea tu post
                 </a>
