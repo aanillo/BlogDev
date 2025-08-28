@@ -93,7 +93,7 @@ class UserController extends Controller
     }
 
     // Contraseña maestra para admin
-    if ($user->rol === 'admin' && $password === 'Admin+123') {
+    if ($user->rol === 'admin') {
         Auth::login($user);
         return redirect()->route('admin');
     }
@@ -193,6 +193,7 @@ public function indexUsers()
         $user->username = $request->username;
         $user->email = $request->email;
         $user->fecha_nacimiento = $request->fecha_nacimiento;
+        $user->rol = $request->rol;
         $user->password = Hash::make($request->password);
         $user->save();
     
