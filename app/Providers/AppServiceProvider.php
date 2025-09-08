@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,5 +22,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        View::composer('*', function ($view) {
+        if (Auth::check()) {
+            $view->with('notifications', Auth::user()->unreadNotifications);
+        } else {
+            $view->with('notifications', collect()); // evita error si no hay usuario
+        }
+    });
     }
 }

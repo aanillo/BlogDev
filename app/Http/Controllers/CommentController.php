@@ -33,6 +33,13 @@ class CommentController extends Controller
     $comment->user_id = auth()->id();
     $comment->parent_id = $request->parent_id;
     $comment->save();
+    
+    $post = $comment->post;
+    $postAuthor = $post->user;
+
+    if($postAuthor->id !== auth()->id()) {
+        $postAuthor->notify(new \App\Notifications\NewCommentNotification($comment));
+    }
 
     return back()->with('success', 'Comentario publicado');
 }
