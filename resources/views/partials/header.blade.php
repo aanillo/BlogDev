@@ -127,18 +127,25 @@
           </div>
         </div>
         <!-- Notificaciones -->
-<div class="relative mr-6 ml-10" x-data="{ notifOpen: false }">
+        @auth
+<div class="relative mr-6 ml-10" x-data="{ notifOpen: false, unreadCount: {{ auth()->user()->unreadNotifications->count() }} }">
   <button 
-    @click="notifOpen = !notifOpen" 
+    @click="
+      notifOpen = !notifOpen;
+      if(notifOpen && unreadCount > 0){
+        fetch('{{ route('notifications.read') }}', {
+          method: 'POST',
+          headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
+        }).then(() => { unreadCount = 0 });
+      }
+    " 
     class="relative flex items-center text-lime-300 hover:text-lime-500 focus:outline-none"
   >
     <i class="fas fa-bell text-3xl"></i>
 
-    @if($notifications->count() > 0)
-      <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-        {{ $notifications->count() }}
-      </span>
-    @endif
+    <template x-if="unreadCount > 0">
+      <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full" x-text="unreadCount"></span>
+    </template>
   </button>
 
   <!-- Dropdown notificaciones -->
@@ -148,11 +155,16 @@
     class="absolute right-0 mt-4 w-80 bg-[#1f1b16] border border-lime-300 text-lime-300 rounded-lg shadow-lg z-50"
   >
     <ul class="divide-y divide-neutral-700 max-h-96 overflow-y-auto">
-      @forelse($notifications as $notification)
+      @forelse(auth()->user()->notifications as $notification)
         <li class="p-3 hover:bg-lime-200 hover:text-black transition">
           <a href="{{ route('show', $notification->data['post_id']) }}">
-            <strong>{{ $notification->data['user'] }}</strong> comentó:  
-            "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
+            @if(($notification->data['type'] ?? '') === 'reply')
+          <strong>{{ $notification->data['user'] }}</strong> respondió a tu comentario:  
+          "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
+        @else
+          <strong>{{ $notification->data['user'] }}</strong> comentó en tu post:  
+          "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
+        @endif
           </a>
         </li>
       @empty
@@ -160,6 +172,8 @@
       @endforelse
     </ul>
   </div>
+</div>
+@endauth
 </div>
 
       </div>

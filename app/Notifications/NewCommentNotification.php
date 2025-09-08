@@ -13,35 +13,27 @@ class NewCommentNotification extends Notification
     use Queueable;
 
     protected $comment;
+    protected $type; // 'post' o 'reply'
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(Comment $comment)
+    public function __construct(Comment $comment, $type = 'post')
     {
-        //
         $this->comment = $comment;
+        $this->type = $type;
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
     public function via($notifiable)
     {
         return ['database'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     */
-    public function toDatabase($notifiable) {
+    public function toDatabase($notifiable)
+    {
         return [
             'comment_id' => $this->comment->id,
             'post_id' => $this->comment->post_id,
             'comment' => $this->comment->comment,
-            'user' => $this->comment->user->username
+            'user' => $this->comment->user->username,
+            'type' => $this->type, 
         ];
     }
 }

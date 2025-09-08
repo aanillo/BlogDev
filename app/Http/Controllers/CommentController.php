@@ -41,6 +41,13 @@ class CommentController extends Controller
         $postAuthor->notify(new \App\Notifications\NewCommentNotification($comment));
     }
 
+    if($comment->parent_id) {
+        $parentComment = Comment::find($comment->parent_id);
+        if($parentComment && $parentComment->user_id !== auth()->id()) {
+            $parentComment->user->notify(new \App\Notifications\NewCommentNotification($comment, 'reply'));
+        }
+    }
+
     return back()->with('success', 'Comentario publicado');
 }
 
