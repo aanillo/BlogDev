@@ -30,7 +30,7 @@
             <h1 class="text-center text-4xl font-semibold mb-8 text-lime-500 underline mt-2">REGISTRO</h1>
 
             <!-- Contenedor de dos columnas (Formulario + Imagen) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-4 min-h-[500px]">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-4 min-h-[500px] mb-8">
 
                 <!-- Columna formulario -->
                 <div class="flex flex-col gap-6">

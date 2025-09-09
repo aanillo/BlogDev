@@ -61,7 +61,7 @@
                     return this.filteredPosts.slice(start, start + this.perPage);
                 }
             }"
-            class="w-[80%] px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12"
+            class="w-[95%] sm:w-[90%] md:w-[90%] px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12"
         >
 
             <div class="bg-neutral-900 w-full sm:w-[60%] mx-auto border-2 border-orange-600 text-orange-600 px-4 sm:px-8 py-6 rounded-lg shadow-md mb-12 text-center transition transform hover:scale-105">

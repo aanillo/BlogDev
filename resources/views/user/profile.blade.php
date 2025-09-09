@@ -17,9 +17,9 @@
 
     @include('partials.header')
 
-    <main class="flex-grow flex flex-col items-center px-4 sm:px-6 mt-40 sm:mt-48">
+    <main class="flex-grow flex flex-col items-center px-4 sm:px-6 mt-52 sm:mt-48">
 
-        <h1 class="text-3xl md:text-6xl font-extrabold text-center text-lime-600 underline mb-12 tracking-tight">PERFIL</h1>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-center text-lime-600 underline mb-12 tracking-tight">PERFIL</h1>
 
         <section class="w-full sm:w-[80%] px-4 sm:px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12">
 

@@ -61,7 +61,7 @@
                     return this.filteredPosts.slice(start, start + this.perPage);
                 }
             }"
-            class="w-[80%] px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12"
+            class="w-[95%] sm:w-[90%] md:w-[90%] px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12"
         >
             
             <!-- TÍTULO -->

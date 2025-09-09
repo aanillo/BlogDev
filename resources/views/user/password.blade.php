@@ -30,7 +30,7 @@
             <h1 class="text-center text-4xl font-semibold mb-8 text-lime-500 underline mt-2">RESTABLECER CONTRASEÑA</h1>
 
             <!-- Contenedor de dos columnas (Formulario + Imagen) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-4 min-h-[500px]">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-2 min-h-[430px]">
 
                 <!-- Columna formulario -->
                 <div class="flex flex-col gap-14 mt-4">
@@ -104,7 +104,7 @@
                 
 
                     <!-- Botones Registrarse y Cancelar debajo de los campos -->
-                    <div class="flex flex-col sm:flex-row gap-6 mt-10 mb-6 w-full">
+                    <div class="flex flex-col sm:flex-row gap-6 mt-12 mb-6 w-full">
                         <button
                             type="submit"
                             class="w-full sm:w-64 bg-green-800 font-bold text-lime-300 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110 text-center"

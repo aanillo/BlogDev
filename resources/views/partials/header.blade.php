@@ -3,16 +3,17 @@
   x-data="{ navOpen: false }"
 >
   <div class="max-w-[1500px] mx-auto px-4">
-    <div class="flex items-center w-full gap-8">
+    <div class="flex items-center w-full gap-4">
 
       <!-- Logo -->
-      <div class="flex-shrink-0 mr-auto">
+      <div class="flex-shrink-0 mr-auto border border-lime-300 rounded-full bg-neutral-700 hover:bg-neutral-800">
         <a href="{{ url('/') }}">
           <img src="{{ asset('img/logoSinFondo.png') }}" width="120px" />
         </a>
       </div>
 
-      <!-- Botón mobile -->
+
+      <!-- Botón menú hamburguesa (solo móvil) -->
       <button 
         @click="navOpen = !navOpen" 
         class="md:hidden focus:outline-none text-lime-300"
@@ -24,12 +25,63 @@
         </svg>
       </button>
 
+      <!-- Notificaciones SOLO móvil -->
+      @auth
+      <div class="relative mr-2 md:hidden" 
+           x-data="{ notifOpen: false, unreadCount: {{ auth()->user()->unreadNotifications->count() }} }">
+        <button 
+          @click="
+            notifOpen = !notifOpen;
+            if(notifOpen && unreadCount > 0){
+              fetch('{{ route('notifications.read') }}', {
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
+              }).then(() => { unreadCount = 0 });
+            }
+          " 
+          class="relative flex items-center text-lime-300 hover:text-lime-500 focus:outline-none"
+        >
+          <i class="fas fa-bell text-2xl"></i>
+          <template x-if="unreadCount > 0">
+            <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full" 
+                  x-text="unreadCount"></span>
+          </template>
+        </button>
+
+        <!-- Dropdown notificaciones -->
+        <div
+          x-show="notifOpen"
+          @click.away="notifOpen = false"
+          class="absolute right-0 mt-4 w-80 bg-[#1f1b16] border border-lime-300 
+                 text-lime-300 rounded-lg shadow-lg z-50"
+        >
+          <ul class="divide-y divide-neutral-700 max-h-96 overflow-y-auto">
+            @forelse(auth()->user()->notifications as $notification)
+              <li class="p-3 hover:bg-lime-200 hover:text-black transition">
+                <a href="{{ route('show', $notification->data['post_id']) }}">
+                  @if(($notification->data['type'] ?? '') === 'reply')
+                    <strong>{{ $notification->data['user'] }}</strong> respondió a tu comentario:  
+                    "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
+                  @else
+                    <strong>{{ $notification->data['user'] }}</strong> comentó en tu post:  
+                    "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
+                  @endif
+                </a>
+              </li>
+            @empty
+              <li class="p-3 text-center text-lime-300">No tienes notificaciones</li>
+            @endforelse
+          </ul>
+        </div>
+      </div>
+      @endauth
+
       <!-- Navegación desktop -->
       <div class="hidden md:flex flex-grow justify-center text-lime-400">
         <div class="flex flex-col items-center text-center">
           <h1 class="text-3xl md:text-5xl text-lime-400 leading-tight">El rincón del dev</h1>
           <div class="flex text-xl gap-x-10 mt-3 text-lime-300 justify-center">
-            <a href="{{ url('/') }}" class="transition-transform duration-300 hover:scale-105 
+            <a href="{{ url('/') }}" class="transition-transform duration-1000 hover:scale-125 
               {{ request()->is('/') ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
               Inicio
             </a>
@@ -67,7 +119,7 @@
         </div>
       </div>
 
-      <!-- Perfil (desktop solo) -->
+      <!-- Perfil + Notificaciones en Desktop -->
       <div class="hidden md:flex flex-shrink-0 ml-auto items-center h-full md:mr-4">
         <div class="relative" x-data="{ open: false }">
           <button 
@@ -126,57 +178,59 @@
             @endauth
           </div>
         </div>
-        <!-- Notificaciones -->
+
+        <!-- Notificaciones SOLO desktop -->
         @auth
-<div class="relative mr-6 ml-10" x-data="{ notifOpen: false, unreadCount: {{ auth()->user()->unreadNotifications->count() }} }">
-  <button 
-    @click="
-      notifOpen = !notifOpen;
-      if(notifOpen && unreadCount > 0){
-        fetch('{{ route('notifications.read') }}', {
-          method: 'POST',
-          headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
-        }).then(() => { unreadCount = 0 });
-      }
-    " 
-    class="relative flex items-center text-lime-300 hover:text-lime-500 focus:outline-none"
-  >
-    <i class="fas fa-bell text-3xl"></i>
+        <div class="relative mr-6 ml-10 hidden md:flex" 
+             x-data="{ notifOpen: false, unreadCount: {{ auth()->user()->unreadNotifications->count() }} }">
+          <button 
+            @click="
+              notifOpen = !notifOpen;
+              if(notifOpen && unreadCount > 0){
+                fetch('{{ route('notifications.read') }}', {
+                  method: 'POST',
+                  headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
+                }).then(() => { unreadCount = 0 });
+              }
+            " 
+            class="relative flex items-center text-lime-300 hover:text-lime-500 focus:outline-none"
+          >
+            <i class="fas fa-bell text-3xl"></i>
+            <template x-if="unreadCount > 0">
+              <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full" 
+                    x-text="unreadCount"></span>
+            </template>
+          </button>
 
-    <template x-if="unreadCount > 0">
-      <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full" x-text="unreadCount"></span>
-    </template>
-  </button>
-
-  <!-- Dropdown notificaciones -->
-  <div
-    x-show="notifOpen"
-    @click.away="notifOpen = false"
-    class="absolute right-0 mt-4 w-80 bg-[#1f1b16] border border-lime-300 text-lime-300 rounded-lg shadow-lg z-50"
-  >
-    <ul class="divide-y divide-neutral-700 max-h-96 overflow-y-auto">
-      @forelse(auth()->user()->notifications as $notification)
-        <li class="p-3 hover:bg-lime-200 hover:text-black transition">
-          <a href="{{ route('show', $notification->data['post_id']) }}">
-            @if(($notification->data['type'] ?? '') === 'reply')
-          <strong>{{ $notification->data['user'] }}</strong> respondió a tu comentario:  
-          "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
-        @else
-          <strong>{{ $notification->data['user'] }}</strong> comentó en tu post:  
-          "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
-        @endif
-          </a>
-        </li>
-      @empty
-        <li class="p-3 text-center text-lime-300">No tienes notificaciones</li>
-      @endforelse
-    </ul>
-  </div>
-</div>
-@endauth
-</div>
-
+          <!-- Dropdown notificaciones -->
+          <div
+            x-show="notifOpen"
+            @click.away="notifOpen = false"
+            class="absolute right-0 mt-10 w-80 bg-[#1f1b16] border border-lime-300 
+                   text-lime-300 rounded-lg shadow-lg z-50"
+          >
+            <ul class="divide-y divide-neutral-700 max-h-96 overflow-y-auto">
+              @forelse(auth()->user()->notifications as $notification)
+                <li class="p-3 hover:bg-lime-200 hover:text-black transition">
+                  <a href="{{ route('show', $notification->data['post_id']) }}">
+                    @if(($notification->data['type'] ?? '') === 'reply')
+                      <strong>{{ $notification->data['user'] }}</strong> respondió a tu comentario:  
+                      "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
+                    @else
+                      <strong>{{ $notification->data['user'] }}</strong> comentó en tu post:  
+                      "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
+                    @endif
+                  </a>
+                </li>
+              @empty
+                <li class="p-3 text-center text-lime-300">No tienes notificaciones</li>
+              @endforelse
+            </ul>
+          </div>
+        </div>
+        @endauth
       </div>
+
     </div>
   </div>
 
@@ -184,7 +238,7 @@
   <div 
     x-show="navOpen" 
     x-transition 
-    class="md:hidden bg-neutral-900 text-lime-300 px-6 py-4 space-y-4 rounded-lg"
+    class="md:hidden bg-neutral-900 text-lime-300 px-6 py-2 space-y-2 rounded-lg"
   >
     <a href="{{ url('/') }}" class="block px-4 py-2 hover:bg-lime-200 hover:text-black
     {{ request()->is('/') ? 'text-lime-300 scale-105 underline' : 'text-lime-400' }}">

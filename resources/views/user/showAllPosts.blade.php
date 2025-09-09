@@ -60,7 +60,7 @@
                     return this.filteredPosts.slice(start, start + this.perPage);
                 }
             }"
-            class="w-[90%] px-8 py-12 border border-neutral-200 bg-white rounded-3xl shadow-lg mb-12"
+            class="w-[95%] sm:w-[90%] md:w-[90%] px-8 py-12 border border-neutral-200 bg-white rounded-3xl shadow-lg mb-12"
         >
             <!-- Título -->
             <div class="bg-neutral-900 w-full md:w-[60%] mx-auto border-2 border-lime-500 text-lime-500 px-8 py-6 rounded-xl shadow-md mb-12 text-center transition transform hover:scale-105">
