@@ -22,7 +22,7 @@
     <!-- Formulario de edición -->
     <form
         method="POST"
-        action="{{ route('edit', $post->id) }}"
+        action="{{ route('post.edit', $post->id) }}"
         enctype="multipart/form-data"
         x-data="{ 
             imageFile: null, 

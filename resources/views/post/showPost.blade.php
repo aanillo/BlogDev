@@ -62,7 +62,12 @@
 
                     <!-- Contenido del post -->
                     <article class="prose max-w-none bg-white text-black bg-lime-50 border-l-8 border-r-8 border-lime-500 p-4 sm:p-8 text-base sm:text-lg rounded-2xl shadow-md transition hover:shadow-xl">
-                        {!! $post->post !!}
+                        @php
+                            $postContent = nl2br(e($post->post));
+                            $postContent = preg_replace('/\[IMG\](.*?)\[\/IMG\]/', '<img src="$1" style="max-width:100%;height:auto;">', $postContent);
+                        @endphp
+
+                        {!! $postContent !!}
                     </article>
 
                     <!-- Botones -->
@@ -75,7 +80,7 @@
 
                         @auth
                         @if (Auth::id() === $post->user_id)
-                            <a href="{{ route('edit', $post->id) }}"
+                            <a href="{{ route('post.edit', $post->id) }}"
                                class="px-6 sm:px-8 py-3 w-full md:w-60 text-lg sm:text-xl text-center bg-indigo-500 text-black border-2 border-black font-bold rounded-lg hover:bg-indigo-600 hover:scale-105 transition transform flex flex-col items-center gap-2">
                                 <i class="fas fa-edit text-2xl"></i>
                                 Editar

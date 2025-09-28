@@ -54,7 +54,6 @@ class PostController extends Controller
 
     public function doInsert(Request $request)
 {
-    
     $validator = Validator::make($request->all(), [
         'title' => 'required|string|max:255',
         'type'  => 'required|in:Inicio,Tecnología,Experiencia,Opinión',
@@ -65,32 +64,28 @@ class PostController extends Controller
         'title.string'   => 'El título debe ser un texto válido.',
         'title.max'      => 'El título no puede superar los 255 caracteres.',
         'type.required'  => 'El tipo es obligatorio.',
-        'type.in'       => 'El tipo seleccionado no es válido. Solo se permiten Inicio, Tecnología, Experiencia u Opinión.',
+        'type.in'        => 'El tipo seleccionado no es válido. Solo se permiten Inicio, Tecnología, Experiencia u Opinión.',
         'post.required'  => 'El contenido del post es obligatorio.',
-        'post.min' => 'El post debe tener mínimo 10 caracteres.',
+        'post.min'       => 'El post debe tener mínimo 10 caracteres.',
         'image.image'    => 'El archivo debe ser una imagen.',
         'image.mimes'    => 'La imagen debe ser jpeg, png, jpg, gif o svg.',
         'image.max'      => 'La imagen no puede superar los 2MB.'
     ]);
 
-    
     if ($validator->fails()) {
         return redirect()->back()->withErrors($validator)->withInput();
     }
 
-    
     $content = $request->post;
 
-    
-    if ($request->hasFile('image')) {
+    // Subir imagen si hay
+     if ($request->hasFile('image')) {
         $imagePath = $request->file('image')->store('posts', 'public');
-        $imageUrl = Storage::url($imagePath);
-
-        
-        $content .= "<br><img src='{$imageUrl}' alt='Imagen del post' style='max-width: 100%; height: auto;'>";
+        $imageUrl = asset('storage/' . $imagePath);
+        $content .= "\n[IMG]{$imageUrl}[/IMG]";
     }
 
-    
+
     $post = new Post();
     $post->title = $request->title;
     $post->type = $request->type;
@@ -102,55 +97,61 @@ class PostController extends Controller
     return redirect()->route('show', ['id' => $post->id])->with('success', 'Post insertado correctamente');
 }
 
+
+
     public function delete($id) {
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect() -> route('insert')->with('success', 'El post ha sido eliminado correctamente');
+        return redirect() -> route('insert.show')->with('success', 'El post ha sido eliminado correctamente');
     }
 
 
-    public function update(Request $request, $id) {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
-            'type'  => 'required|in:Inicio,Tecnología,Experiencia,Opinión',
-            'post'  => 'required|string|min:10',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ], [
-            'title.required' => 'El título es obligatorio.',
-            'title.string'   => 'El título debe ser un texto válido.',
-            'title.max'      => 'El título no puede superar los 255 caracteres.',
-            'type.required'  => 'El tipo es obligatorio.',
-            'post.required'  => 'El contenido del post es obligatorio.',
-            'post.min' => 'El post debe tener mínimo 10 caracteres.',
-            'image.image'    => 'El archivo debe ser una imagen.',
-            'image.mimes'    => 'La imagen debe ser jpeg, png, jpg, gif o svg.',
-            'image.max'      => 'La imagen no puede superar los 2MB.'
-        ]);
+    public function update(Request $request, $id)
+{
+    $validator = Validator::make($request->all(), [
+        'title' => 'required|string|max:255',
+        'type'  => 'required|in:Inicio,Tecnología,Experiencia,Opinión',
+        'post'  => 'required|string|min:10',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    ], [
+        'title.required' => 'El título es obligatorio.',
+        'title.string'   => 'El título debe ser un texto válido.',
+        'title.max'      => 'El título no puede superar los 255 caracteres.',
+        'type.required'  => 'El tipo es obligatorio.',
+        'post.required'  => 'El contenido del post es obligatorio.',
+        'post.min'       => 'El post debe tener mínimo 10 caracteres.',
+        'image.image'    => 'El archivo debe ser una imagen.',
+        'image.mimes'    => 'La imagen debe ser jpeg, png, jpg, gif o svg.',
+        'image.max'      => 'La imagen no puede superar los 2MB.'
+    ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $content = $request->post;
-
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('posts', 'public');
-            $imageUrl = Storage::url($imagePath);
-
-            
-            $content .= "<br><img src='{$imageUrl}' alt='Imagen del post' style='max-width: 100%; height: auto;'>";
-        }
-
-        $post = Post::findOrFail($id);
-        $post->title = $request->title;
-        $post->type = $request->type;
-        $post->post = $content; 
-        $post->user_id = auth()->id();
-        $post->save();
-
-        return redirect()->route('show', ['id' => $post->id])->with('success', 'Post editado correctamente');
-
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
     }
+
+    // Tomamos el contenido plano del request
+    $content = $request->post;
+
+    // Subir imagen nueva si existe y agregar al contenido
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('posts', 'public');
+        $imageUrl = asset('storage/' . $imagePath);
+
+        // Insertar marcador de imagen
+        $content .= "\n[IMG]{$imageUrl}[/IMG]";
+    }
+
+    $post = Post::findOrFail($id);
+    $post->title = $request->title;
+    $post->type = $request->type;
+    $post->post = $content;
+    $post->user_id = auth()->id();
+    $post->save();
+
+    return redirect()->route('show', ['id' => $post->id])->with('success', 'Post editado correctamente');
+}
+
+
     
 
     public function edit($id)

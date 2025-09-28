@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/insert', [PostController::class, 'showInsert'])->name('insert.show');
 Route::post('/insert', [PostController::class, 'doInsert'])->name('doInsert');
 Route::get('/show/{id}', [PostController::class, 'showPost'])->name('show');
-Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
-Route::put('/edit/{id}', [PostController::class, 'update'])->name('update');
+Route::get('/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
+Route::put('/edit/{id}', [PostController::class, 'update'])->name('post.update');
 Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('delete');
 
 // Posts por tipo
