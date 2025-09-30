@@ -142,7 +142,7 @@ public function deleteUser(Request $request){
 
 public function indexUsers()
     {
-        $users = User::all();
+        $users = User::orderBy('created_at', 'desc')->get();
         return view('admin/users', compact('users'));
     }
 

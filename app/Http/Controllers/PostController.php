@@ -45,7 +45,7 @@ class PostController extends Controller
     }
 
     public function indexPosts() {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->get(); 
         return view('admin/posts', compact('posts'));
     }
 
@@ -103,13 +103,13 @@ class PostController extends Controller
     public function delete($id) {
     $post = Post::findOrFail($id);
     
-    // Notificar al autor del post si es eliminado por admin
+   
     if (auth()->user()->rol === 'admin' && $post->user_id !== auth()->id()) {
         $postOwner = $post->user;
         $postOwner->notify(new AdminActionNotification(
     $post->title, 
     'Tu post ha sido eliminado por un administrador',
-        null // No hay post_id porque el post fue eliminado
+        null 
 ));
     }
     
@@ -150,7 +150,6 @@ class PostController extends Controller
         return redirect()->back()->withErrors($validator)->withInput();
     }
 
-    // Tomamos el contenido plano del request
     $content = $request->post;
 
     // Subir imagen nueva si existe y agregar al contenido
@@ -158,7 +157,6 @@ class PostController extends Controller
         $imagePath = $request->file('image')->store('posts', 'public');
         $imageUrl = asset('storage/' . $imagePath);
 
-        // Insertar marcador de imagen
         $content .= "\n[IMG]{$imageUrl}[/IMG]";
     }
 

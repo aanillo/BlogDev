@@ -83,7 +83,7 @@ class CommentController extends Controller
 
 public function indexComments() 
 {
-    $comments = Comment::with(['post:id,title', 'user:id,username'])->get();
+    $comments = Comment::with(['post:id,title', 'user:id,username'])->orderBy('publish_date', 'desc')->get();
     return view('admin/comments', compact('comments'));
 }
 
@@ -95,13 +95,13 @@ public function deleteComment($id)
     $comment = Comment::findOrFail($id);
     $post = $comment->post;
     
-    // Notificar al autor del comentario si es eliminado por admin
+    
     if (auth()->user()->rol === 'admin' && $comment->user_id !== auth()->id()) {
         $commentOwner = $comment->user;
         $commentOwner->notify(new AdminActionNotification(
     $post->title, 
     'Tu comentario ha sido eliminado por un administrador',
-    $post->id // Aquí sí podemos pasar el post_id
+    $post->id 
 ));
     }
     
