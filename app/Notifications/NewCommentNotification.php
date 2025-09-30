@@ -13,7 +13,7 @@ class NewCommentNotification extends Notification
     use Queueable;
 
     protected $comment;
-    protected $type; // 'post' o 'reply'
+    protected $type; 
 
     public function __construct(Comment $comment, $type = 'post')
     {

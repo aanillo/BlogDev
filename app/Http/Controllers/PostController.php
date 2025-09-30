@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Post;
+use App\Notifications\AdminActionNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -100,10 +101,30 @@ class PostController extends Controller
 
 
     public function delete($id) {
-        $post = Post::findOrFail($id);
-        $post->delete();
-        return redirect() -> route('insert.show')->with('success', 'El post ha sido eliminado correctamente');
+    $post = Post::findOrFail($id);
+    
+    // Notificar al autor del post si es eliminado por admin
+    if (auth()->user()->rol === 'admin' && $post->user_id !== auth()->id()) {
+        $postOwner = $post->user;
+        $postOwner->notify(new AdminActionNotification(
+    $post->title, 
+    'Tu post ha sido eliminado por un administrador',
+        null // No hay post_id porque el post fue eliminado
+));
     }
+    
+    
+    
+    $post->delete();
+
+    if (auth()->user()->rol === 'admin') {
+        return redirect()->route('admin')
+                         ->with('success', 'El post ha sido eliminado correctamente');
+    } else {
+        return redirect()->route('insert.show', ['id' => auth()->user()->id])
+                         ->with('success', 'El post ha sido eliminado correctamente');
+    }
+}
 
 
     public function update(Request $request, $id)
@@ -151,12 +172,13 @@ class PostController extends Controller
     return redirect()->route('show', ['id' => $post->id])->with('success', 'Post editado correctamente');
 }
 
-
-    
-
     public function edit($id)
 {
     $post = Post::findOrFail($id);
     return view('post/edit', compact('post'));  
 }
+
+
+    
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Notifications\AdminActionNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -92,10 +93,21 @@ public function indexComments()
 public function deleteComment($id)
 {
     $comment = Comment::findOrFail($id);
+    $post = $comment->post;
+    
+    // Notificar al autor del comentario si es eliminado por admin
+    if (auth()->user()->rol === 'admin' && $comment->user_id !== auth()->id()) {
+        $commentOwner = $comment->user;
+        $commentOwner->notify(new AdminActionNotification(
+    $post->title, 
+    'Tu comentario ha sido eliminado por un administrador',
+    $post->id // Aquí sí podemos pasar el post_id
+));
+    }
     
     $comment->delete();
 
-    return redirect()->route('admin.comments')->with('success', 'Comentario eliminado correctamente.');
+    return redirect()->route('admin')->with('success', 'Comentario eliminado correctamente.');
 }
 
 
@@ -156,6 +168,9 @@ private function containsBadWords($text)
 
     return preg_match($pattern, $text);
 }
+
+
+    
 
 
 }

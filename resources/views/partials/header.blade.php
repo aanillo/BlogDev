@@ -56,22 +56,49 @@
                  text-lime-300 rounded-lg shadow-lg z-50"
         >
           <ul class="divide-y divide-neutral-700 max-h-96 overflow-y-auto">
-            @forelse(auth()->user()->notifications as $notification)
-              <li class="p-3 hover:bg-lime-200 hover:text-black transition">
-                <a href="{{ route('show', $notification->data['post_id']) }}">
-                  @if(($notification->data['type'] ?? '') === 'reply')
-                    <strong>{{ $notification->data['user'] }}</strong> respondió a tu comentario:  
-                    "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
-                  @else
-                    <strong>{{ $notification->data['user'] }}</strong> comentó en tu post:  
-                    "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
-                  @endif
-                </a>
-              </li>
-            @empty
-              <li class="p-3 text-center text-lime-300">No tienes notificaciones</li>
-            @endforelse
-          </ul>
+  @forelse(auth()->user()->notifications as $notification)
+    @php
+      $data = $notification->data ?? [];
+      $type = $data['type'] ?? '';
+      $postId = $data['post_id'] ?? null;
+      $user = $data['user'] ?? null;
+      $comment = $data['comment'] ?? null;
+      $message = $data['message'] ?? null;
+      $reason = $data['reason'] ?? null;
+      $postTitle = $data['post_title'] ?? null;
+    @endphp
+
+    <li class="p-3 hover:bg-lime-200 hover:text-black transition">
+      @if($type === 'admin_action' || !$postId)
+        <div>
+          <i class="fas fa-exclamation-triangle text-red-500"></i>
+          <strong>Notificación administrativa:</strong><br>
+          {{ $message ?? $reason ?? 'Tu post ha sido eliminado por un administrador.' }}
+          @if($postTitle)
+            <br><em>{{ $postTitle }}</em>
+          @endif
+        </div>
+      @elseif($postId)
+        <a href="{{ route('show', ['id' => $postId]) }}">
+          @if($type === 'reply')
+            <strong>{{ $user }}</strong> respondió a tu comentario:
+            "{{ \Illuminate\Support\Str::limit($comment, 40) }}"
+          @else
+            <strong>{{ $user }}</strong> comentó en tu post:
+            "{{ \Illuminate\Support\Str::limit($comment, 40) }}"
+          @endif
+        </a>
+      @else
+        <div>
+          <strong>Notificación:</strong> {{ json_encode($data) }}
+        </div>
+      @endif
+    </li>
+  @empty
+    <li class="p-3 text-center text-lime-300">No tienes notificaciones</li>
+  @endforelse
+</ul>
+          
         </div>
       </div>
       @endauth
@@ -209,23 +236,55 @@
             class="absolute right-0 mt-10 w-80 bg-[#1f1b16] border border-lime-300 
                    text-lime-300 rounded-lg shadow-lg z-50"
           >
-            <ul class="divide-y divide-neutral-700 max-h-96 overflow-y-auto">
-              @forelse(auth()->user()->notifications as $notification)
-                <li class="p-3 hover:bg-lime-200 hover:text-black transition">
-                  <a href="{{ route('show', $notification->data['post_id']) }}">
-                    @if(($notification->data['type'] ?? '') === 'reply')
-                      <strong>{{ $notification->data['user'] }}</strong> respondió a tu comentario:  
-                      "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
-                    @else
-                      <strong>{{ $notification->data['user'] }}</strong> comentó en tu post:  
-                      "{{ \Illuminate\Support\Str::limit($notification->data['comment'], 40) }}"
-                    @endif
-                  </a>
-                </li>
-              @empty
-                <li class="p-3 text-center text-lime-300">No tienes notificaciones</li>
-              @endforelse
-            </ul>
+            
+<ul class="divide-y divide-neutral-700 max-h-96 overflow-y-auto">
+  @forelse(auth()->user()->notifications as $notification)
+    @php
+      $data = $notification->data ?? [];
+      $type = $data['type'] ?? '';
+      $postId = $data['post_id'] ?? null;
+      $user = $data['user'] ?? null;
+      $comment = $data['comment'] ?? null;
+      $message = $data['message'] ?? null;
+      $reason = $data['reason'] ?? null;
+      $postTitle = $data['post_title'] ?? null;
+    @endphp
+
+    <li class="p-3 hover:bg-lime-200 hover:text-black transition">
+      @if($type === 'admin_action' || !$postId)
+        
+        <div>
+          <i class="fas fa-exclamation-triangle text-red-500"></i>
+          <strong>Notificación administrativa:</strong><br>
+          {{ $message ?? $reason ?? 'Tu post ha sido eliminado por un administrador.' }}
+          @if($postTitle)
+            <br><em>{{ $postTitle }}</em>
+          @endif
+        </div>
+      @elseif($postId)
+        
+        <a href="{{ route('show', ['id' => $postId]) }}">
+          @if($type === 'reply')
+            <strong>{{ $user }}</strong> respondió a tu comentario:
+            "{{ \Illuminate\Support\Str::limit($comment, 40) }}"
+          @else
+            <strong>{{ $user }}</strong> comentó en tu post:
+            "{{ \Illuminate\Support\Str::limit($comment, 40) }}"
+          @endif
+        </a>
+      @else
+        
+        <div>
+          <strong>Notificación:</strong> {{ json_encode($data) }}
+        </div>
+      @endif
+    </li>
+  @empty
+    <li class="p-3 text-center text-lime-300">No tienes notificaciones</li>
+  @endforelse
+</ul>
+
+
           </div>
         </div>
         @endauth
