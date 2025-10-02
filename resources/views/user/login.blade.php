@@ -32,6 +32,7 @@
                         <div class="relative w-full mx-auto">
                             <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-lime-200"></i>
                             <input type="text" name="login" id="login"
+                                    value="{{ old('login') }}"
                                    class="w-full pl-10 p-2 border border-lime-200 bg-neutral-700 text-lime-200 rounded-md mt-1"
                                    placeholder="Escribe tu correo o username">
                         </div>

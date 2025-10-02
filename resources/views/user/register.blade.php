@@ -45,6 +45,7 @@
                                 type="text"
                                 name="username"
                                 id="username"
+                                value="{{ old('username') }}"
                                 class="w-full pl-10 p-2 border border-lime-200 bg-neutral-700 text-lime-200 rounded-md mt-1"
                                 placeholder="Escribe tu username"
                             />
@@ -64,6 +65,7 @@
                                 type="email"
                                 name="email"
                                 id="email"
+                                value="{{ old('email') }}"
                                 class="w-full pl-10 p-2 border border-lime-200 bg-neutral-700 text-lime-200 rounded-md mt-1"
                                 placeholder="Escribe tu correo"
                             />
@@ -82,6 +84,7 @@
                             <input
                                 type="date"
                                 name="fecha_nacimiento"
+                                value="{{ old('fecha_nacimiento') }}"
                                 id="fecha_nacimiento"
                                 class="w-full pl-10 p-2 border border-lime-200 bg-neutral-700 text-lime-200 rounded-md mt-1"
                             />
