@@ -15,7 +15,7 @@
 
     <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-36">
         
-    <section class="text-center mb-8 w-full sm:w-[90%] md:w-[80%] mx-auto px-4 md:px-10 py-10 bg-neutral-100">
+    <section class="text-center mt-8 mb-8 w-full sm:w-[90%] md:w-[80%] mx-auto px-4 md:px-10 py-10 bg-neutral-100">
     <div class="grid grid-cols-1 md:grid-cols-[70%_30%] items-center gap-6 shadow-2xl rounded-2xl p-6 md:p-10 bg-white border border-neutral-300">
         <div>
             <h1 class="text-3xl sm:text-4xl md:text-5xl text-center text-black mb-4 md:mb-6">
@@ -121,8 +121,8 @@
 </section>
 
 
-<!-- CALL TO ACTION -->
-<section class="mt-20 mb-16 bg-lime-100 p-16 text-center rounded-2xl shadow-inner w-[90%] mx-auto border border-lime-500">
+
+<section class="text-center mt-20 mb-16 w-full sm:w-[90%] md:w-[80%] shadow-2xl rounded-2xl mx-auto px-4 md:px-10 py-10 bg-white border border-neutral-300">
     @guest
         <h2 class="text-4xl font-bold text-black mb-4">Únete a la Comunidad</h2>
         <p class="text-lg text-neutral-700 mb-8">

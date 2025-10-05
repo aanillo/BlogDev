@@ -6,10 +6,7 @@
     <title>El rincón del dev</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
@@ -19,86 +16,91 @@
 
     <main class="flex-grow flex flex-col items-center px-4 sm:px-6 mt-52 sm:mt-48">
 
-        <h1 class="text-5xl md:text-6xl font-extrabold text-center text-lime-600 underline mb-12 tracking-tight">PERFIL</h1>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-center text-lime-600 underline mb-12 tracking-tight">
+            PERFIL
+        </h1>
 
         <section class="w-full sm:w-[80%] px-4 sm:px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12">
 
-            <!-- Avatar + nombre -->
+            <!-- Nombre + Rol -->
             <div class="flex flex-col items-center mb-10">
-                <div class="flex justify-center w-full sm:w-[50%] items-center bg-neutral-800 px-6 sm:px-8 py-4 rounded-lg shadow text-lime-500 text-center border-2 border-lime-500 transition transform hover:scale-105">
+                <div class="flex justify-center w-full sm:w-[50%] items-center bg-neutral-800 px-6 py-4 rounded-lg shadow text-lime-500 text-center border-2 border-lime-500 transition transform hover:scale-105">
                     <h1 class="text-3xl md:text-5xl font-bold break-words">{{ $user->username }}</h1>
                 </div>
-                <span class="mt-4 inline-block bg-neutral-700 text-lime-500 text-lg font-semibold px-4 py-1 rounded-full shadow text-center">
+                <span class="mt-4 inline-block bg-neutral-700 text-lime-500 text-lg font-semibold px-4 py-1 rounded-full shadow">
                     Rol: {{ ucfirst($user->rol) }}
                 </span>
             </div>
 
-            <!-- Información -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Contenido dividido en dos columnas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 
-                <!-- Detalles -->
-                <div class="flex flex-col gap-6 text-lg sm:text-xl">
+                <!-- Información Personal -->
+                <div class="flex flex-col gap-4 text-lg sm:text-xl bg-neutral-50 p-6 rounded-lg shadow-inner border border-lime-200">
+                    <h2 class="text-2xl font-bold border-b border-lime-400 pb-1 mb-2 flex items-center">
+                        <i class="fas fa-user-circle mr-2 text-lime-500"></i> Información personal
+                    </h2>
 
-                    <div class="flex flex-col gap-2">
-                        <h2 class="text-2xl font-bold border-b border-lime-400 pb-1 mb-2"><i class="fas fa-user-circle mr-2 text-lime-500"></i>Información personal</h2>
-                        <p><i class="fas fa-user mr-2 text-lime-500"></i><strong>Username:</strong> {{ $user->username }}</p>
-                        <p><i class="fas fa-envelope mr-2 text-lime-500"></i><strong>Correo:</strong> {{ $user->email }}</p>
-                        <p><i class="fas fa-birthday-cake mr-2 text-lime-500"></i><strong>Fecha nacimiento:</strong> {{ \Carbon\Carbon::parse($user->fecha_nacimiento)->format('d/m/Y') }}</p>
-                        <p><i class="fas fa-calendar-plus mr-2 text-lime-500"></i><strong>Fecha registro:</strong> {{ \Carbon\Carbon::parse($user->fecha_registro)->format('d/m/Y') }}</p>
-                        <p><i class="fas fa-clock mr-2 text-lime-500"></i><strong>Última actualización:</strong> {{ $user->updated_at->diffForHumans() }}</p>
+                    <p><i class="fas fa-user mr-2 text-lime-500"></i><strong>Username:</strong> {{ $user->username }}</p>
+                    <p><i class="fas fa-envelope mr-2 text-lime-500"></i><strong>Correo:</strong> {{ $user->email }}</p>
+                    <p><i class="fas fa-birthday-cake mr-2 text-lime-500"></i><strong>Fecha nacimiento:</strong> {{ \Carbon\Carbon::parse($user->fecha_nacimiento)->format('d/m/Y') }}</p>
+                    <p><i class="fas fa-calendar-plus mr-2 text-lime-500"></i><strong>Fecha registro:</strong> {{ \Carbon\Carbon::parse($user->fecha_registro)->format('d/m/Y') }}</p>
+
+                    <!-- Avatar pequeño -->
+                    <div class="flex flex-col items-start mt-3">
+                        <img 
+                            src="{{ asset($user->avatar) }}" 
+                            alt="Avatar de {{ $user->username }}" 
+                            class="w-24 h-24 rounded-full border-2 border-lime-400 shadow-md"
+                        >
                     </div>
-
-                    <div class="flex flex-col gap-2">
-                        <h2 class="text-2xl font-bold border-b border-lime-400 pb-1 mb-2 mt-6"><i class="fas fa-chart-line mr-2 text-lime-500"></i>Actividad</h2>
-                        <p><i class="fas fa-pen mr-2 text-lime-500"></i><strong>Posts publicados:</strong> {{ $numPosts }}</p>
-                        <p><i class="fas fa-comment-dots mr-2 text-lime-500"></i><strong>Comentarios realizados:</strong> {{ $numComments }}</p>
-                        <a href="{{ route('user.posts', ['id' => auth()->user()->id]) }}">
-                            <button
-                                class="w-full sm:w-[50%] mt-6 bg-lime-600 border-2 border-lime-700 text-white text-lg font-bold py-2 rounded-lg transition transform hover:bg-lime-700 hover:scale-105">
-                                Ver tus posts
-                            </button>
-                        </a>
-                    </div>
-
                 </div>
 
-                <!-- Imagen decorativa -->
-                <div class="flex justify-center items-center">
-                    <img src="{{ asset('img/computer.jpg') }}"
-                         class="w-full md:w-[500px] lg:w-[600px] max-h-[400px] sm:max-h-[500px] object-cover rounded-xl shadow-lg"
-                         alt="imagen decorativa">
+                <!-- Actividad -->
+                <div class="flex flex-col gap-4 text-lg sm:text-xl bg-neutral-50 p-6 rounded-lg shadow-inner border border-lime-200">
+                    <h2 class="text-2xl font-bold border-b border-lime-400 pb-1 mb-2 flex items-center">
+                        <i class="fas fa-chart-line mr-2 text-lime-500"></i> Actividad
+                    </h2>
+
+                    <p><i class="fas fa-pen mr-2 text-lime-500"></i><strong>Posts publicados:</strong> {{ $numPosts }}</p>
+                    <p><i class="fas fa-comment-dots mr-2 text-lime-500"></i><strong>Comentarios realizados:</strong> {{ $numComments }}</p>
+
+                    <a href="{{ route('user.posts', ['id' => auth()->user()->id]) }}">
+                        <div class="flex justify-center mt-12">
+                        <button 
+                            class="w-full sm:w-[60%] bg-lime-600 border-2 border-lime-700 text-white text-lg font-bold py-2 rounded-lg transition transform hover:bg-lime-700 hover:scale-105">
+                            Ver tus posts
+                        </button>
+                        </div>
+                    </a>
                 </div>
 
             </div>
 
             <!-- Botones finales -->
-            <div class="flex flex-col sm:flex-wrap sm:flex-row justify-center gap-6 mt-20 w-full">
+            <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-6 mt-16">
 
-                <!-- Botón Home -->
                 <a href="{{ url('/') }}"
-                   class="flex flex-col items-center justify-center gap-2 px-6 py-3 w-full sm:w-60 text-lg sm:text-xl border-2 border-black bg-purple-600 text-black font-bold rounded-md hover:bg-purple-700 transition transform hover:scale-105 text-center">
-                    <i class="fas fa-home text-xl sm:text-2xl"></i>
+                   class="flex flex-col items-center justify-center gap-2 px-6 py-3 w-full sm:w-60 text-lg border-2 border-black bg-purple-600 text-black font-bold rounded-md hover:bg-purple-700 transition transform hover:scale-105 text-center">
+                    <i class="fas fa-home text-2xl"></i>
                     <span>Home</span>
                 </a>
 
-                <!-- Botón Editar Perfil -->
                 <a href="{{ route('editProfile', ['id' => $user->id]) }}"
-                   class="flex flex-col items-center justify-center gap-2 px-6 py-3 w-full sm:w-60 text-lg sm:text-xl border-2 border-black bg-indigo-500 text-black font-bold rounded-md hover:bg-indigo-600 transition transform hover:scale-105 text-center">
-                    <i class="fas fa-user-edit text-xl sm:text-2xl"></i>
+                   class="flex flex-col items-center justify-center gap-2 px-6 py-3 w-full sm:w-60 text-lg border-2 border-black bg-indigo-500 text-black font-bold rounded-md hover:bg-indigo-600 transition transform hover:scale-105 text-center">
+                    <i class="fas fa-user-edit text-2xl"></i>
                     <span>Editar perfil</span>
                 </a>
 
-                <!-- Botón Restablecer Contraseña -->
                 <a href="{{ route('editPsw', ['id' => $user->id]) }}"
-                   class="flex flex-col items-center justify-center gap-2 px-6 py-3 w-full sm:w-60 text-lg sm:text-xl border-2 border-black bg-yellow-500 text-black font-bold rounded-md hover:bg-yellow-600 transition transform hover:scale-105 text-center">
-                    <i class="fas fa-key text-xl sm:text-2xl"></i>
+                   class="flex flex-col items-center justify-center gap-2 px-6 py-3 w-full sm:w-60 text-lg border-2 border-black bg-yellow-500 text-black font-bold rounded-md hover:bg-yellow-600 transition transform hover:scale-105 text-center">
+                    <i class="fas fa-key text-2xl"></i>
                     <span>Restablecer contraseña</span>
                 </a>
 
-                <!-- Botón Eliminar Perfil -->
                 <a href="{{ route('deleteShow', ['id' => $user->id]) }}"
-                   class="flex flex-col items-center justify-center text-center gap-2 px-6 py-3 w-full sm:w-60 text-lg sm:text-xl border-2 border-black bg-red-500 text-black font-bold rounded-md hover:bg-red-600 transition transform hover:scale-105 text-center">
-                    <i class="fas fa-user-slash text-xl sm:text-2xl"></i>
+                   class="flex flex-col items-center justify-center gap-2 px-6 py-3 w-full sm:w-60 text-lg border-2 border-black bg-red-500 text-black font-bold rounded-md hover:bg-red-600 transition transform hover:scale-105 text-center">
+                    <i class="fas fa-user-slash text-2xl"></i>
                     <span>Eliminar perfil</span>
                 </a>
 

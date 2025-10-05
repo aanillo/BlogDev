@@ -45,9 +45,18 @@
 
                     <!-- Metadata -->
                     <div class="flex flex-wrap justify-between items-start text-black gap-6">
-                        <div class="min-w-[40%]">
+                        <div class="min-w-[20%]">
                             <p class="text-base sm:text-lg font-semibold">Publicado por:</p>
-                            <p class="text-xl sm:text-2xl font-bold break-words">{{ $post->user->username }}</p>
+                            <div class="flex flex-row">
+                                <p class="text-xl sm:text-2xl font-bold break-words">{{ $post->user->username }}</p>
+                             <div class="flex flex-col items-start mt-3">
+                        <img 
+                            src="{{ asset($post->user->avatar) }}" 
+                            alt="Avatar de {{ $post->user->username }}" 
+                            class="w-16 ml-24 sm:ml-14 -mt-10 rounded-full border-2 border-lime-400 shadow-md"
+                        >
+                            </div>
+                    </div>
                         </div>
                         <div class="text-left sm:text-center min-w-[40%]">
                             <p class="text-base sm:text-lg font-semibold">Fecha publicación:</p>

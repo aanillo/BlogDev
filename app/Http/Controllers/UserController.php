@@ -26,6 +26,7 @@ class UserController extends Controller
             "username" => "required|regex:/^[\pL\s0-9]+$/u|min:4|max:20|unique:users,username",
             "email" => "required|email:rfc,dns|unique:users,email",
             "fecha_nacimiento" => "required|date|before_or_equal:" . now()->subYears(16)->format('Y-m-d'),
+            "avatar" => "required|in:avatar/hombre1.png,avatar/mujer1.png",
             "password" => "required|min:8|max:20|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/",
             "password_repeat" => "required|same:password"
         ], [
@@ -40,6 +41,8 @@ class UserController extends Controller
             "fecha_nacimiento.required" => "Debes ingresar tu fecha de nacimiento.",
             "fecha_nacimiento.date" => "La fecha de nacimiento no es válida.",
             "fecha_nacimiento.before_or_equal" => "Debes tener al menos 16 años para registrarte.",
+            "avatar.required" => "Debes elegir un avatar.",
+            "avatar.in" => "El avatar seleccionado no es válido.",
             "password.required" => "La contraseña es obligatoria.",
             "password.min" => "La contraseña debe contener al menos 8 caracteres.",
             "password.max" => "La contraseña no debe superar los 20 caracteres.",
@@ -56,6 +59,7 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->fecha_nacimiento = $request->fecha_nacimiento;
+        $user->avatar = $request->avatar;
         $user->password = Hash::make($request->password);
         $user->save();
     
@@ -214,7 +218,7 @@ public function indexUsers()
             "username" => "required|regex:/^[\pL\s0-9]+$/u|min:4|max:20",
             "email" => "required|email:rfc,dns",
             "fecha_nacimiento" => "required|date|before_or_equal:" . now()->subYears(16)->format('Y-m-d'),
-
+            "avatar" => "required|in:avatar/hombre1.png,avatar/mujer1.png",
         ], [
             "username.required" => "El nombre de usuario es obligatorio.",
             "username.regex" => "El nombre de usuario solo puede contener letras, números y espacios.",
@@ -225,6 +229,8 @@ public function indexUsers()
             "fecha_nacimiento.required" => "La fecha de nacimiento es obligatoria.",
             "fecha_nacimiento.date" => "Debe proporcionar una fecha válida.",
             "fecha_nacimiento.before_or_equal" => "Debes tener al menos 16 años para registrarte.",
+            "avatar.required" => "Debes elegir un avatar.",
+            "avatar.in" => "El avatar seleccionado no es válido.",
         ]);
     
         if ($validator->fails()) {

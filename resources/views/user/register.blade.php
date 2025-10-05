@@ -29,11 +29,11 @@
 
             <h1 class="text-center text-4xl font-semibold mb-8 text-lime-500 underline mt-2">REGISTRO</h1>
 
-            <!-- Contenedor de dos columnas (Formulario + Imagen) -->
+            <!-- Contenedor de dos columnas (Formulario + Avatar) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-4 min-h-[500px] mb-8">
 
                 <!-- Columna formulario -->
-                <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-6 mt-8">
 
                     <label for="username" class="text-left">
                         <span class="block text-lg font-medium">Username:</span>
@@ -162,41 +162,75 @@
                     </label>
 
                     <!-- Botones Registrarse y Cancelar debajo de los campos -->
-                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 w-full justify-center">
+                
+                </div>
+
+                <!-- Columna avatar -->
+                <div class="flex flex-col justify-center items-center gap-2 mt-12 sm:mt-0" x-data="{ avatar: 'avatar/hombre1.png' }">
+
+                    <h3 class="text-2xl font-bold text-lime-400 mb-4">Elige tu avatar</h3>
+
+                    <!-- Avatar mostrado -->
+                    <img 
+                        :src="'{{ asset('') }}' + avatar"
+                        class="w-64 object-cover rounded-full mb-4 border-4 border-lime-300"
+                        alt="avatar seleccionado"
+                    />
+
+                    <!-- Botones para cambiar -->
+                    <div class="flex gap-6 mb-4">
+                        <button 
+                            type="button"
+                            class="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700"
+                            @click="avatar = 'avatar/hombre1.png'"
+                            :class="{ 'ring-4 ring-lime-400': avatar === 'avatar/hombre1.png' }"
+                        >
+                            1
+                        </button>
+
+                        <button 
+                            type="button"
+                            class="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700"
+                            @click="avatar = 'avatar/mujer1.png'"
+                            :class="{ 'ring-4 ring-lime-400': avatar === 'avatar/mujer1.png' }"
+                        >
+                            2
+                        </button>
+                    </div>
+
+                    <!-- Campo oculto para enviar avatar -->
+                    <input type="hidden" name="avatar" :value="avatar">
+
+                    @error("avatar")
+                    <small class="text-red-500 text-lg font-bold">{{ $message }}</small>
+                    @enderror
+            
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 mb-8">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 w-full justify-center mt-10">
                         <button
                             type="submit"
-                            class="bg-green-800 font-bold w-full sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="bg-green-800 font-bold w-full h-12 sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110"
                         >
                             Registrarse
                         </button>
                         <button
                             type="reset"
-                            class="bg-red-600 font-bold w-full sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="bg-red-600 font-bold w-full h-12 sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110"
                         >
                             Cancelar
                         </button>
                     </div>
-                </div>
-
-                <!-- Columna imagen -->
-                <div class="flex flex-col justify-center items-center">
-                    <img
-                        src="{{ asset('img/register.png') }}"
-                        class="w-full md:w-96 h-auto object-cover rounded-md mb-6"
-                        alt="imagen"
-                    />
-
-                    <!-- Botón Volver a Home debajo de la imagen -->
-                    <div class="flex flex-col items-center gap-2 mt-8">
+                    <div class="flex flex-col items-center gap-2 mt-12 sm:mt-0">
                         <h3 class="text-xl text-lime-300 mb-2">Volver a Home:</h3>
                         <a
                             href="{{ url('/') }}"
-                            class="btnHome w-64 bg-purple-800 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-1.5 rounded-md hover:bg-purple-900 transform transition-transform duration-1000 ease-in-out hover:scale-110"
+                            class="w-full sm:w-64 bg-purple-800 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-1.5 rounded-md hover:bg-purple-900 transform transition-transform duration-1000 ease-in-out hover:scale-110"
                         >
                             Home
                         </a>
                     </div>
-                </div>
             </div>
         </form>
     </main>

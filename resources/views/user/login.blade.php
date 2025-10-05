@@ -79,10 +79,10 @@
                 </div>
 
                 <!-- Columna de imagen + Home -->
-                <div class="flex flex-col justify-center items-center gap-8">
-                    <img src="{{ asset('img/login.png') }}"
-                         class="w-full md:w-96 h-auto object-cover rounded-md"
-                         alt="imagen">
+                <div class="flex flex-col justify-center items-center gap-8 mt-12 sm:mt-0">
+                    <img src="{{ asset('img/logo.png') }}"
+                         class="w-full md:w-96 h-auto object-cover border-2 border-lime-300 rounded-full"
+                         alt="logo">
 
                     <!-- Volver a Home debajo de la imagen -->
                     <div class="flex flex-col items-center gap-2 mb-8">
