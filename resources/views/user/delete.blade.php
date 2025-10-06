@@ -25,17 +25,16 @@
     <div class="flex flex-col md:flex-row justify-center items-center gap-12">
 
       <!-- Botón Logout -->
-      <!-- Botón Logout usando <a> en lugar de <form> -->
-<div class="flex flex-col items-center gap-4">
-  <i class="fas fa-door-open text-5xl text-[#1f1b16]"></i>
-  <form action="{{ route('deleteProfile', $user->id) }}" method="POST">
+  <div class="flex flex-col items-center gap-4">
+    <i class="fas fa-door-open text-5xl text-[#1f1b16]"></i>
+      <form action="{{ route('deleteProfile', $user->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" 
                     class="w-64 bg-red-600 text-lime-200 text-xl font-bold border-2 border-lime-300 px-6 py-3 rounded-xl transition-all duration-300 hover:bg-red-700 hover:scale-105 shadow-md text-center">
                     Eliminar</button>
                 </form>
-</div>
+        </div>
 
 
       <!-- Botón Volver -->
