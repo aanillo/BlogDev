@@ -11,7 +11,7 @@
 </head>
 <body class="flex flex-col min-h-screen bg-neutral-100 font-[Courier New] text-black">
 
-    @include('partials.header') 
+    @include('partials.headerAdmin') 
 
     <main class="flex-grow flex flex-col items-center px-6 mt-48">
 

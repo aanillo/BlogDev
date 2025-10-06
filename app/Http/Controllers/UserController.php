@@ -26,7 +26,7 @@ class UserController extends Controller
             "username" => "required|regex:/^[\pL\s0-9]+$/u|min:4|max:20|unique:users,username",
             "email" => "required|email:rfc,dns|unique:users,email",
             "fecha_nacimiento" => "required|date|before_or_equal:" . now()->subYears(16)->format('Y-m-d'),
-            "avatar" => "required|in:avatar/hombre1.png,avatar/mujer1.png",
+            "avatar" => "required|in:avatar/hombre1.png,avatar/mujer1.png,avatar/hombre2.png,avatar/mujer2.png",
             "password" => "required|min:8|max:20|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/",
             "password_repeat" => "required|same:password"
         ], [
@@ -126,7 +126,6 @@ public function mostrarViewLogout() {
     return view('user/logout');
 }
 
-
 // borrar usuario
 
 public function deleteUser(Request $request){
@@ -165,6 +164,7 @@ public function indexUsers()
             "email" => "required|email:rfc,dns|unique:users,email",
             "fecha_nacimiento" => "required|date|before_or_equal:" . now()->subYears(16)->format('Y-m-d'),
             "rol" => "required|in:user,admin",
+            "avatar" => "required|in:avatar/hombre1.png,avatar/mujer1.png,avatar/hombre2.png,avatar/mujer2.png",
             "password" => "required|min:8|max:20|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/",
             "password_repeat" => "required|same:password"
         ], [
@@ -181,6 +181,8 @@ public function indexUsers()
             "fecha_nacimiento.before_or_equal" => "Debes tener al menos 16 años para registrarte.",
             "rol.required" => "Debes seleccionar un rol.",
             "rol.in" => "El rol seleccionado no es válido.",
+            "avatar.required" => "Debes elegir un avatar.",
+            "avatar.in" => "El avatar seleccionado no es válido.",
             "password.required" => "La contraseña es obligatoria.",
             "password.min" => "La contraseña debe contener al menos 8 caracteres.",
             "password.max" => "La contraseña no debe superar los 20 caracteres.",
@@ -197,6 +199,7 @@ public function indexUsers()
         $user->username = $request->username;
         $user->email = $request->email;
         $user->fecha_nacimiento = $request->fecha_nacimiento;
+        $user->avatar = $request->avatar;
         $user->rol = $request->rol;
         $user->password = Hash::make($request->password);
         $user->save();
@@ -208,7 +211,7 @@ public function indexUsers()
     // vista para editar usuario
     public function edit($id) {
         $user = User::findOrFail($id);
-        return view('editUser', compact('user'));
+        return view('admin/editUser', compact('user'));
     }
 
     
@@ -218,7 +221,7 @@ public function indexUsers()
             "username" => "required|regex:/^[\pL\s0-9]+$/u|min:4|max:20",
             "email" => "required|email:rfc,dns",
             "fecha_nacimiento" => "required|date|before_or_equal:" . now()->subYears(16)->format('Y-m-d'),
-            "avatar" => "required|in:avatar/hombre1.png,avatar/mujer1.png",
+            "avatar" => "required|in:avatar/hombre1.png,avatar/mujer1.png,avatar/hombre2.png,avatar/mujer2.png",
         ], [
             "username.required" => "El nombre de usuario es obligatorio.",
             "username.regex" => "El nombre de usuario solo puede contener letras, números y espacios.",
@@ -242,6 +245,7 @@ public function indexUsers()
         $user->username = $request->username;
         $user->email = $request->email;
         $user->fecha_nacimiento = $request->fecha_nacimiento;
+        $user->avatar = $request->avatar;
     
         if ($request->has('password') && !empty($request->password)) {
             $user->password = Hash::make($request->password);
@@ -286,6 +290,7 @@ public function updateProfile(Request $request, $id) {
         "username" => "required|regex:/^[\pL\s0-9]+$/u|min:4|max:20",
         "email" => "required|email:rfc,dns",
         "fecha_nacimiento" => "required|date|before_or_equal:" . now()->subYears(16)->format('Y-m-d'),
+        "avatar" => "required|in:avatar/hombre1.png,avatar/mujer1.png,avatar/hombre2.png,avatar/mujer2.png",
     ], [
         "username.required" => "El nombre de usuario es obligatorio.",
         "username.regex" => "El nombre de usuario solo puede contener letras, números y espacios.",
@@ -296,6 +301,8 @@ public function updateProfile(Request $request, $id) {
         "fecha_nacimiento.required" => "La fecha de nacimiento es obligatoria.",
         "fecha_nacimiento.date" => "Debe proporcionar una fecha válida.",
         "fecha_nacimiento.before_or_equal" => "Debes tener al menos 16 años para registrarte.",
+        "avatar.required" => "Debes elegir un avatar.",
+        "avatar.in" => "El avatar seleccionado no es válido.",
     ]);
 
     if ($validator->fails()) {
@@ -306,6 +313,7 @@ public function updateProfile(Request $request, $id) {
 
     $user->username = $request->username;
     $user->email = $request->email;
+    $user->avatar = $request->avatar;
     $user->fecha_nacimiento = $request->fecha_nacimiento;
 
     if ($request->has('password') && !empty($request->password)) {

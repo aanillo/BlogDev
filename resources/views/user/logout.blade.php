@@ -12,7 +12,13 @@
 
 <body class="flex flex-col min-h-screen text-white bg-neutral-100 font-[Courier New]">
 
-    @include('partials.header')
+    @auth
+      @if(auth()->user()->rol === 'admin')
+        @include('partials.headerAdmin')
+      @else
+        @include('partials.header')
+      @endif
+    @endauth
 
     <main class="flex-grow flex flex-col items-center justify-center bg-neutral-100 text-black px-6 pt-48 pb-24">
 
@@ -24,8 +30,7 @@
 
     <div class="flex flex-col md:flex-row justify-center items-center gap-12">
 
-      <!-- Botón Logout -->
-      <!-- Botón Logout usando <a> en lugar de <form> -->
+  
 <div class="flex flex-col items-center gap-4">
   <i class="fas fa-door-open text-5xl text-[#1f1b16]"></i>
   <a href="{{ route('logout') }}"

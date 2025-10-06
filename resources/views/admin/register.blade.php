@@ -15,7 +15,7 @@
 
 <body class="flex flex-col min-h-screen text-white bg-neutral-100 font-[Courier New]">
 
-    @include('partials.header')
+    @include('partials.headerAdmin')
 
     <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-48">
 
@@ -178,34 +178,81 @@
                         <small class="text-red-500 text-lg font-bold">{{ $message }}</small>
                         @enderror
                     </label>
+                </div>
+                <div class="flex flex-col justify-center items-center gap-2 mt-12 sm:mt-0" x-data="{ avatar: 'avatar/hombre1.png' }">
 
-                    <!-- Botones Registrarse y Cancelar debajo de los campos -->
-                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 w-full justify-center mt-4 mb-4">
+                    <h3 class="text-2xl font-bold text-lime-400 mb-4">Elige tu avatar</h3>
+
+                    <!-- Avatar mostrado -->
+                    <img 
+                        :src="'{{ asset('') }}' + avatar"
+                        class="w-64 object-cover rounded-full mb-4 border-4 border-lime-300"
+                        alt="avatar seleccionado"
+                    />
+
+                    <!-- Botones para cambiar -->
+                    <div class="flex gap-6 mb-4">
+                        <button 
+                            type="button"
+                            class="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700"
+                            @click="avatar = 'avatar/hombre1.png'"
+                            :class="{ 'ring-4 ring-lime-400': avatar === 'avatar/hombre1.png' }"
+                        >
+                            1
+                        </button>
+
+                        <button 
+                            type="button"
+                            class="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700"
+                            @click="avatar = 'avatar/mujer1.png'"
+                            :class="{ 'ring-4 ring-lime-400': avatar === 'avatar/mujer1.png' }"
+                        >
+                            2
+                        </button>
+                        <button 
+                            type="button"
+                            class="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700"
+                            @click="avatar = 'avatar/hombre2.png'"
+                            :class="{ 'ring-4 ring-lime-400': avatar === 'avatar/hombre2.png' }"
+                        >
+                            3
+                        </button>
+
+                        <button 
+                            type="button"
+                            class="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700"
+                            @click="avatar = 'avatar/mujer2.png'"
+                            :class="{ 'ring-4 ring-lime-400': avatar === 'avatar/mujer2.png' }"
+                        >
+                            4
+                        </button>
+                    </div>
+
+                    <!-- Campo oculto para enviar avatar -->
+                    <input type="hidden" name="avatar" :value="avatar">
+
+                    @error("avatar")
+                    <small class="text-red-500 text-lg font-bold">{{ $message }}</small>
+                    @enderror
+            
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-4 mt-4 sm:mt-12 mb-8">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 w-full justify-center mt-10">
                         <button
                             type="submit"
-                            class="bg-green-800 font-bold w-full sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="bg-green-800 font-bold w-full h-12 sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-green-900 transition-transform duration-300 ease-in-out hover:scale-110"
                         >
                             Registrarse
                         </button>
                         <button
                             type="reset"
-                            class="bg-red-600 font-bold w-full sm:w-64 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110"
+                            class="bg-red-600 font-bold w-full sm:w-64 h-12 text-lime-200 text-xl border-2 border-lime-200 px-6 py-2 rounded-md hover:bg-red-700 transform transition-transform duration-300 ease-in-out hover:scale-110"
                         >
                             Cancelar
                         </button>
                     </div>
-                </div>
-
-                <!-- Columna imagen -->
-                <div class="flex flex-col justify-center items-center">
-                    <img
-                        src="{{ asset('img/register.png') }}"
-                        class="w-full md:w-96 h-auto object-cover rounded-md mb-6"
-                        alt="imagen"
-                    />
-
-                    <!-- Botón Volver a Home debajo de la imagen -->
-                    <div class="flex flex-col items-center gap-2 mt-16">
+            <div class="flex flex-col items-center gap-2 mt-6 sm:mt-0">
                         <h3 class="text-xl text-lime-300 mb-2">Volver atrás:</h3>
                         <a
                             href="{{ url()->previous() }}"
@@ -214,7 +261,6 @@
                             Volver
                         </a>
                     </div>
-                </div>
             </div>
         </form>
     </main>

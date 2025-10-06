@@ -196,6 +196,23 @@
                         >
                             2
                         </button>
+                        <button 
+                            type="button"
+                            class="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700"
+                            @click="avatar = 'avatar/hombre2.png'"
+                            :class="{ 'ring-4 ring-lime-400': avatar === 'avatar/hombre2.png' }"
+                        >
+                            3
+                        </button>
+
+                        <button 
+                            type="button"
+                            class="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700"
+                            @click="avatar = 'avatar/mujer2.png'"
+                            :class="{ 'ring-4 ring-lime-400': avatar === 'avatar/mujer2.png' }"
+                        >
+                            4
+                        </button>
                     </div>
 
                     <!-- Campo oculto para enviar avatar -->

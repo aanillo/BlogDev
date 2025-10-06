@@ -15,13 +15,13 @@
 
 <body class="flex flex-col min-h-screen text-white bg-neutral-100 font-[Courier New]">
 
-    @include('partials.header')
+    @include('partials.headerAdmin')
 
     <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-48">
 
         <form
             method="POST"
-            action="{{ route('updateProfile', $user->id) }}"
+            action="{{ route('updateUsers', $user->id) }}"
             class="w-full max-w-7xl px-12 py-6 rounded-2xl shadow-xl text-lime-300 bg-neutral-800 mb-8"
         >
             @csrf
@@ -182,17 +182,6 @@
                                 class="w-full sm:w-64 bg-purple-800 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-2 rounded-md hover:bg-purple-900 transform transition-transform duration-300 ease-in-out hover:scale-110"
                             >
                                 Atrás
-                            </a>
-                        </div>
-
-                        <!-- Botón Home -->
-                        <div class="flex flex-col items-center w-full sm:w-auto">
-                            <h3 class="text-xl text-lime-300 mb-2">Volver a Inicio:</h3>
-                            <a
-                                href="{{ url('/') }}"
-                                class="w-full sm:w-64 bg-purple-800 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-2 rounded-md hover:bg-purple-900 transform transition-transform duration-300 ease-in-out hover:scale-110"
-                            >
-                                Home
                             </a>
                         </div>
 

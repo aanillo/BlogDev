@@ -25,7 +25,7 @@
         </svg>
       </button>
 
-      <!-- Notificaciones SOLO móvil -->
+      
       @auth
       <div class="relative mr-2 md:hidden" 
            x-data="{ notifOpen: false, unreadCount: {{ auth()->user()->unreadNotifications->count() }} }">
