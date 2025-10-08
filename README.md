@@ -3,7 +3,7 @@
 ## Título
 **EL RINCÓN DEL DEV**
 
-![Logo](./public/img/logo.jpg)
+![Logo](./public/img/logo.png)
 
 - **Autor:** Alfonso Jesús Anillo Romero
 
