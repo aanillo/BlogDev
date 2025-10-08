@@ -33,9 +33,6 @@ Una red social innovadora pensada para la comunidad tecnológica, donde los apas
 - Implementar una interfaz sencilla y minimalista.
 - Fomentar una comunidad de informáticos.
 
----
-
-
 
 ---
 
