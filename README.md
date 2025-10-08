@@ -1,9 +1,8 @@
 # Proyecto web personal
 
-## Título
 **EL RINCÓN DEL DEV**
 
-![Logo](./public/img/logo.png)
+<img src="./public/img/logo.png" alt="Logo" width="150">
 
 - **Autor:** Alfonso Jesús Anillo Romero
 
