@@ -6,7 +6,7 @@
 
 - **Autor:** Alfonso Jesús Anillo Romero
 
-- **Enlace a la web:** [El rincón del dev](http://elrincondeldev.duckdns.org:81/)
+- **Enlace a la web:** [El rincón del dev](https://elrincondeldev.duckdns.org/)
 
 ---
 
