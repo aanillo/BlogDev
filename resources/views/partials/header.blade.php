@@ -6,7 +6,7 @@
     <div class="flex items-center w-full gap-4">
 
       <!-- Logo -->
-      <div class="flex-shrink-0 mr-auto border border-lime-300 rounded-full bg-neutral-700 hover:bg-neutral-800">
+      <div class="flex-shrink-0 mr-auto ml-0 sm:ml-10 border border-lime-300 rounded-full bg-neutral-700 hover:bg-neutral-800">
         <a href="{{ url('/') }}">
           <img src="{{ asset('img/logoSinFondo.png') }}" width="120px" />
         </a>
@@ -147,7 +147,7 @@
       </div>
 
       <!-- Perfil + Notificaciones en Desktop -->
-      <div class="hidden md:flex flex-shrink-0 ml-auto items-center h-full md:mr-4">
+      <div class="hidden md:flex flex-shrink-0 ml-auto items-center h-full mr-0 sm:mr-10">
         <div class="relative" x-data="{ open: false }">
           <button 
             @click="open = !open" 
@@ -163,7 +163,7 @@
           <div
             x-show="open"
             @click.away="open = false"
-            class="absolute text-xl mt-2 w-48 bg-[#1f1b16] border border-lime-300 text-lime-300 rounded-lg shadow-lg py-2 z-50 -translate-x-20"
+            class="absolute text-xl mt-2 w-48 bg-[#1f1b16] border border-lime-300 text-lime-300 rounded-lg shadow-lg py-2 z-50 -translate-x-32"
           >
             @guest
               <a href="{{ route('login.show') }}"
