@@ -1,8 +1,6 @@
-FROM php:8.2-fpm
+FROM php:8.2-apache
 
-# Instalar Nginx y dependencias necesarias
 RUN apt-get update && apt-get install -y \
-    nginx \
     git \
     unzip \
     zip \
@@ -10,28 +8,20 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libcurl4-openssl-dev \
-    default-mysql-client \
-    && docker-php-ext-install pdo pdo_mysql mbstring bcmath zip \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && docker-php-ext-install pdo pdo_mysql mbstring tokenizer xml ctype bcmath zip curl
 
-# Instalar Composer
+RUN a2enmod rewrite
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
-COPY . .
 
-# Instalar dependencias de Laravel
-RUN composer install --no-dev --optimize-autoloader
+COPY . /var/www/html
 
-# Permisos
-RUN mkdir -p storage bootstrap/cache \
-    && chown -R www-data:www-data /var/www/html \
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html \
     && chmod -R 775 storage bootstrap/cache
-
-# Copiar configuración de Nginx
-COPY ./docker/nginx/default.conf /etc/nginx/sites-available/default
 
 EXPOSE 80
 
-# Iniciar ambos procesos (Nginx + PHP-FPM)
-CMD service php8.2-fpm start && nginx -g 'daemon off;'
+CMD ["apache2-foreground"]
