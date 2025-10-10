@@ -1,12 +1,13 @@
-# Etapa 1: Build de Laravel
-FROM php:8.2-fpm AS builder
+# Etapa 1: PHP + Composer
+FROM php:8.2-fpm AS build
 
-# Instalar extensiones necesarias
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     zip \
     libzip-dev \
+    libpng-dev \
     libonig-dev \
     libxml2-dev \
     libcurl4-openssl-dev \
@@ -14,41 +15,31 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_mysql mbstring xml ctype bcmath zip curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Instala Composer
+# Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copiar proyecto al contenedor
+# Copiar archivos de Laravel
 WORKDIR /var/www/html
-COPY . /var/www/html
+COPY . .
 
-# Instalar dependencias de Laravel
+# Instalar dependencias PHP
 RUN composer install --no-dev --optimize-autoloader
 
-# Generar APP_KEY (si no está en .env)
-RUN php artisan key:generate
-
-# Ejecutar migraciones automáticamente
-RUN php artisan migrate --force
-
-# Opcional: ejecutar seeders si quieres cargar datos iniciales
-# RUN php artisan db:seed --force
-
-# Ajustar permisos de carpetas críticas
+# Ajustar permisos
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage \
-    && chmod -R 775 /var/www/html/bootstrap/cache
+    && chmod -R 775 storage bootstrap/cache
 
-# Etapa 2: Imagen final con NGINX
-FROM nginx:stable-alpine
+# Etapa 2: Nginx + PHP-FPM
+FROM nginx:stable
 
-# Copiar la app desde la etapa builder
-COPY --from=builder /var/www/html /var/www/html
-
-# Copiar configuración de NGINX
+# Copiar configuración personalizada de NGINX
 COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# Exponer puerto 80
+# Copiar la aplicación Laravel desde la etapa anterior
+COPY --from=build /var/www/html /var/www/html
+
+WORKDIR /var/www/html
+
 EXPOSE 80
 
-# Iniciar NGINX en primer plano
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
