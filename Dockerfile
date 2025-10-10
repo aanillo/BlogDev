@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libcurl4-openssl-dev \
     default-mysql-client \
-    && docker-php-ext-install pdo pdo_mysql mbstring tokenizer xml ctype bcmath zip curl \
+    && docker-php-ext-install pdo pdo_mysql mbstring xml ctype bcmath zip curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Instala Composer
