@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: laravel-blog
+    env: docker
+    docker:
+      dockerfile: Dockerfile
+    plan: free
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        fromService:
+          type: web
+          name: laravel-blog
+          property: url
+      # Las variables de DB las configurarás manualmente en el dashboard
