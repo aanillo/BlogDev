@@ -1,6 +1,7 @@
+# Usamos PHP 8.2 con FPM
 FROM php:8.2-fpm
 
-# Instalar dependencias y extensiones
+# Instalar dependencias del sistema y extensiones PHP necesarias
 RUN apt-get update && apt-get install -y \
     nginx \
     git \
@@ -10,13 +11,14 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libcurl4-openssl-dev \
-    && docker-php-ext-install pdo pdo_mysql mbstring bcmath zip curl
+    && docker-php-ext-install pdo pdo_mysql mbstring bcmath zip curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copiar proyecto
+# Copiar proyecto al contenedor
 WORKDIR /var/www/html
 COPY . /var/www/html
 
-# Permisos
+# Ajustar permisos
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
     && chmod -R 775 storage bootstrap/cache
@@ -28,8 +30,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Puerto Railway
-ENV PORT 8080
+# Puerto fijo interno para Railway
 EXPOSE 8080
 
 # Arranque seguro: PHP-FPM en background + Nginx en foreground
