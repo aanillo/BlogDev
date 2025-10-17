@@ -42,7 +42,7 @@
         <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-emerald-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
             <h2 class="text-3xl underline mb-8"><strong>INICIOS</strong></h2>
             <h3 class="text-2xl mb-8">Los primeros pasos de la comunidad</h3>
-            <img src="img/community.svg" alt="Descripción" class="mx-auto mb-6 h-32">
+            <img src="{{ asset('img/community.svg') }}" alt="Descripción" class="mx-auto mb-6 h-32">
             <a href="{{ route('type', 'Inicio') }}">
                 <button class="bg-transparent w-40 mt-8 text-lime-200 text-xl font-bold border-2 border-solid border-lime-200 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
@@ -50,7 +50,7 @@
         <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-indigo-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
             <h2 class="text-3xl underline mb-8"><strong>TECNOLOGÍAS</strong></h2>
             <h3 class="text-2xl mb-8">Consejos e historias sobre las tecnologías</h3>
-            <img src="img/tech.svg" alt="Descripción" class="mx-auto mb-6 h-32">
+            <img src="{{ asset('img/tech.svg') }}" alt="Descripción" class="mx-auto mb-6 h-32">
             <a href="{{ route('type', 'Tecnología') }}">
                 <button class="bg-transparent shadow-2xl w-40 mt-8 text-lime-200 text-xl font-bold border-2 border-solid border-lime-200 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
@@ -58,7 +58,7 @@
         <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-orange-600 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
             <h2 class="text-3xl underline mb-8"><strong>EXPERIENCIAS</strong></h2>
             <h3 class="text-2xl mb-8">Aportaciones tanto profesionales como educativas</h3>
-            <img src="img/work.svg" alt="Descripción" class="mx-auto mb-6 h-32">
+            <img src="{{ asset('img/work.svg') }}" alt="Descripción" class="mx-auto mb-6 h-32">
             <a href="{{ route('type', 'Experiencia') }}">
                 <button class="bg-transparent w-40 mt-8 text-lime-200 text-xl font-bold border-2 border-solid border-lime-200 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
@@ -66,7 +66,7 @@
         <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-yellow-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
             <h2 class="text-3xl underline mb-8"><strong>OPINIONES</strong></h2>
             <h3 class="text-2xl mb-8">Puntos de vista de la comunidad</h3>
-            <img src="img/chat.svg" alt="Descripción" class="mx-auto mb-6 h-32">
+            <img src="{{ asset('img/chat.svg') }}" alt="Descripción" class="mx-auto mb-6 h-32">
             <a href="{{ route('type', 'Opinión') }}">
                 <button class="bg-transparent w-40 mt-8 text-lime-200 text-xl font-bold border-2 border-solid border-lime-200 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
