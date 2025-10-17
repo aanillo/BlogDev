@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>El rincón del dev</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}" />
+    <link rel="icon" type="image/x-icon" href="/logo.png">
+    <link rel="shortcut icon" href="{{ url('/logo.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link
         rel="stylesheet"
