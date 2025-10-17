@@ -14,7 +14,7 @@
 
     @include('partials.headerAdmin') 
 
-    <main class="flex-grow flex flex-col items-center px-6 mt-48">
+    <main class="flex-grow flex flex-col items-center px-6 mt-48 mb-16">
 
         <h1 class="text-4xl md:text-6xl font-extrabold text-center text-lime-600 underline mb-16 tracking-tight">
             ADMIN
