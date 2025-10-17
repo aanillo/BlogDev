@@ -81,8 +81,10 @@ class PostController extends Controller
 
     // Subir imagen si hay
      if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('posts', 'public');
-        $imageUrl = asset('storage/' . $imagePath);
+        $file = $request->file('image');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('posts'), $filename);
+        $imageUrl = asset('posts/' . $filename);
         $content .= "\n[IMG]{$imageUrl}[/IMG]";
     }
 
@@ -154,9 +156,10 @@ class PostController extends Controller
 
     // Subir imagen nueva si existe y agregar al contenido
     if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('posts', 'public');
-        $imageUrl = asset('storage/' . $imagePath);
-
+        $file = $request->file('image');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('posts'), $filename);
+        $imageUrl = asset('posts/' . $filename);
         $content .= "\n[IMG]{$imageUrl}[/IMG]";
     }
 
