@@ -22,6 +22,7 @@ class PostController extends Controller
 
     $posts = Post::with('user') 
     ->where('type', $type)
+    ->orderBy('created_at', 'desc')
     ->get();
 
     switch ($type) {
@@ -79,7 +80,6 @@ class PostController extends Controller
 
     $content = $request->post;
 
-    // Subir imagen si hay
      if ($request->hasFile('image')) {
         $file = $request->file('image');
         $filename = time() . '_' . $file->getClientOriginalName();
@@ -154,7 +154,6 @@ class PostController extends Controller
 
     $content = $request->post;
 
-    // Subir imagen nueva si existe y agregar al contenido
     if ($request->hasFile('image')) {
         $file = $request->file('image');
         $filename = time() . '_' . $file->getClientOriginalName();
