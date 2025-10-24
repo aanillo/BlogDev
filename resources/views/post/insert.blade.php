@@ -18,7 +18,7 @@
 
     @include('partials.header')
 
-    <main class="flex-grow flex flex-col items-center px-6 mt-40 
+    <main class="flex-grow flex flex-col items-center px-6 mt-36
              bg-neutral-100 text-white 
              py-10">
 
@@ -36,7 +36,7 @@
         <h1 class="text-center text-5xl font-bold mb-6 bg-gradient-to-r from-lime-400 to-lime-200 text-transparent bg-clip-text">
             INSERTAR POST
         </h1>
-        <p class="text-center text-xl text-lime-300 mb-10">
+        <p class="text-center text-lg text-lime-300 mb-4">
             Comparte tus ideas, anécdotas y experiencias con la comunidad.
         </p>
 

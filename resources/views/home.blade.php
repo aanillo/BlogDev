@@ -14,15 +14,15 @@
 
     @include('partials.header') 
 
-    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-36">
+    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-24">
         
     <section class="text-center mt-8 mb-8 w-full sm:w-[90%] md:w-[80%] mx-auto px-4 md:px-10 py-10 bg-neutral-100">
     <div class="grid grid-cols-1 md:grid-cols-[70%_30%] items-center gap-6 shadow-2xl rounded-2xl p-6 md:p-10 bg-white border border-neutral-300">
         <div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl text-center text-black mb-4 md:mb-6">
+            <h1 class="text-2xl sm:text-4xl md:text-5xl text-center text-black mb-4 md:mb-6">
                 El rincón del dev: La web del programador
             </h1>
-            <h3 class="text-base sm:text-lg md:text-xl">
+            <h3 class="text-base sm:text-lg md:text-lg">
                 Este es tu espacio para compartir vivencias y experiencias en el fascinante mundo de la programación: cómo te iniciaste, por qué elegiste cierta tecnología, tus aprendizajes, desafíos y la forma en que entiendes y vives el desarrollo de software.
             </h3>
         </div>
@@ -30,7 +30,7 @@
         <div class="mt-6 md:mt-0">
             <img 
                 src="{{ asset('img/logoSinFondo.png') }}" 
-                class="w-full h-auto object-contain rounded-md max-h-60" 
+                class="w-full h-auto object-contain rounded-md max-h-52" 
                 alt="logo"
             >
         </div>
@@ -40,33 +40,33 @@
 
 
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-[90%] items-center gap-6 mb-10">
-        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-emerald-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
-            <h2 class="text-3xl underline mb-8"><strong>INICIOS</strong></h2>
-            <h3 class="text-2xl mb-8">Los primeros pasos de la comunidad</h3>
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-emerald-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[450px]">
+            <h2 class="text-3xl underline mb-4"><strong>INICIOS</strong></h2>
+            <h3 class="text-lg mb-4">Los primeros pasos de la comunidad</h3>
             <img src="{{ asset('img/community.png') }}" alt="Descripción" class="mx-auto mb-6 h-32">
             <a href="{{ route('type', 'Inicio') }}">
                 <button class="bg-transparent w-40 mt-8 text-lime-200 text-xl font-bold border-2 border-solid border-lime-200 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
         </article>
-        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-indigo-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
-            <h2 class="text-3xl underline mb-8"><strong>TECNOLOGÍAS</strong></h2>
-            <h3 class="text-2xl mb-8">Consejos e historias sobre las tecnologías</h3>
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-indigo-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[450px]">
+            <h2 class="text-3xl underline mb-4"><strong>TECNOLOGÍAS</strong></h2>
+            <h3 class="text-lg mb-4">Consejos e historias sobre las tecnologías</h3>
             <img src="{{ asset('img/tech.png') }}" alt="Descripción" class="mx-auto mb-6 h-32">
             <a href="{{ route('type', 'Tecnología') }}">
                 <button class="bg-transparent shadow-2xl w-40 mt-8 text-lime-200 text-xl font-bold border-2 border-solid border-lime-200 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
         </article>
-        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-orange-600 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
-            <h2 class="text-3xl underline mb-8"><strong>EXPERIENCIAS</strong></h2>
-            <h3 class="text-2xl mb-8">Aportaciones tanto profesionales como educativas</h3>
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-orange-600 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[450px]">
+            <h2 class="text-3xl underline mb-4"><strong>EXPERIENCIAS</strong></h2>
+            <h3 class="text-lg mb-4">Aportaciones tanto profesionales como educativas</h3>
             <img src="{{ asset('img/work.png') }}" alt="Descripción" class="mx-auto mb-6 h-32">
             <a href="{{ route('type', 'Experiencia') }}">
                 <button class="bg-transparent w-40 mt-8 text-lime-200 text-xl font-bold border-2 border-solid border-lime-200 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
             </a>
         </article>
-        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-yellow-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[500px]">
-            <h2 class="text-3xl underline mb-8"><strong>OPINIONES</strong></h2>
-            <h3 class="text-2xl mb-8">Puntos de vista de la comunidad</h3>
+        <article class="flex flex-col justify-between border-2 border-lime-200 rounded-2xl px-10 py-10 shadow-lg bg-yellow-500 text-center text-black hover:-translate-y-1 transition hover:bg-[#1f1b16] hover:text-lime-300 h-[450px]">
+            <h2 class="text-3xl underline mb-4"><strong>OPINIONES</strong></h2>
+            <h3 class="text-lg mb-4">Puntos de vista de la comunidad</h3>
             <img src="{{ asset('img/chat.png') }}" alt="Descripción" class="mx-auto mb-6 h-32">
             <a href="{{ route('type', 'Opinión') }}">
                 <button class="bg-transparent w-40 mt-8 text-lime-200 text-xl font-bold border-2 border-solid border-lime-200 px-10 py-1.5 rounded-md hover:bg-lime-500 transform transition-transform duration-1000 ease-in-out hover:scale-110 hover:text-black hover:border-black">Ir</button>
@@ -107,7 +107,7 @@
                         <time class="text-neutral-500" x-text="post.created_at"></time>
                     </div>
 
-                    <p class="text-neutral-600 mt-2 mb-4 line-clamp-3" x-text="post.excerpt"></p>
+                    <p class="text-neutral-600 mt-2 mb-4 line-clamp-2" x-text="post.excerpt"></p>
 
                     <button 
                         @click="window.location.href = baseUrl + post.id"

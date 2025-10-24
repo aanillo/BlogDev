@@ -15,7 +15,7 @@
 
     @include('partials.header')
 
-    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-48">
+    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-40">
 
         <!-- Formulario para inicio de sesión -->
         <form method="POST" action="{{ route('doLogin') }}"
@@ -69,10 +69,10 @@
                             </button>
                         </div>
 
-                        <div class="text-center mt-16">
+                        <div class="text-center mt-4 mb-10">
                             <h3 class="text-xl mb-2">¿Aún no estás registrado? Hazlo aquí:</h3>
                             <a href="{{ route('register.show') }}"
-                               class="inline-block w-72 bg-indigo-700 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-1.5 rounded-md hover:bg-indigo-800 transform transition-transform duration-500 ease-in-out hover:scale-110">
+                               class="inline-block w-full sm:w-72 bg-indigo-700 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-1.5 rounded-md hover:bg-indigo-800 transform transition-transform duration-500 ease-in-out hover:scale-110">
                                 Regístrate
                             </a>
                         </div>
@@ -82,14 +82,14 @@
                 <!-- Columna de imagen + Home -->
                 <div class="flex flex-col justify-center items-center gap-8 mt-12 sm:mt-0">
                     <img src="{{ asset('img/logo.png') }}"
-                         class="w-full md:w-96 h-auto object-cover border-2 border-lime-300 rounded-full"
+                         class="w-full md:w-80 h-auto object-cover border-2 border-lime-300 rounded-full"
                          alt="logo">
 
                     <!-- Volver a Home debajo de la imagen -->
                     <div class="flex flex-col items-center gap-2 mb-8">
                         <h3 class="text-xl">Volver a Home:</h3>
                         <a href="{{ url('/') }}"
-                           class="btnHome w-64 bg-purple-800 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-1.5 rounded-md hover:bg-purple-900 transform transition-transform duration-1000 ease-in-out hover:scale-110">
+                           class="btnHome w-52 sm:w-72 bg-purple-800 text-lime-200 text-xl text-center font-bold border-2 border-lime-200 px-10 py-1.5 rounded-md hover:bg-purple-900 transform transition-transform duration-1000 ease-in-out hover:scale-110">
                             Home
                         </a>
                     </div>

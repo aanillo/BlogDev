@@ -18,7 +18,7 @@
 
     @include('partials.header')
 
-    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-48">
+    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-40">
 
         <form
             method="POST"
@@ -98,13 +98,13 @@
                 </div>
 
                 <!-- Columna derecha (Avatar) -->
-<div class="flex flex-col justify-center items-center mt-12 sm:mt-8" x-data="{ avatar: '{{ old('avatar', $user->avatar) }}' }">
+<div class="flex flex-col justify-center items-center mt-4 sm:mt-8" x-data="{ avatar: '{{ old('avatar', $user->avatar) }}' }">
 
     <h3 class="text-2xl font-bold text-lime-400 mb-4">Elige tu avatar</h3>
 
     <!-- Avatar mostrado -->
     <img 
-        :src="'{{ asset('') }}' + avatar" 
+        :src="'{{ asset('') }}' + avatar"
         class="w-48 h-48 object-cover rounded-full mb-4 border-4 border-lime-300" 
         alt="avatar seleccionado"
     >

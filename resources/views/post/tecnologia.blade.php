@@ -27,7 +27,7 @@
 
     @include('partials.header')
 
-    <main class="flex-grow flex flex-col items-center px-6 mt-48">
+    <main class="flex-grow flex flex-col items-center px-6 mt-44">
 
         <section 
             x-data="{
@@ -62,11 +62,11 @@
                     return this.filteredPosts.slice(start, start + this.perPage);
                 }
             }"
-            class="w-[95%] sm:w-[90%] md:w-[90%] px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12"
+            class="w-[100%] sm:w-[90%] md:w-[90%] px-10 py-12 bg-white border border-neutral-300 rounded-2xl shadow-lg mb-12"
         >
 
-            <div class="bg-neutral-900 w-full sm:w-[60%] mx-auto border-2 border-indigo-500 text-indigo-500 px-4 sm:px-8 py-6 rounded-lg shadow-md mb-12 text-center transition transform hover:scale-105">
-    <h1 class="text-3xl sm:text-5xl font-bold leading-tight break-words">Posts de {{ $type }}</h1>
+            <div class="bg-neutral-900 w-full sm:w-[60%] mx-auto border-2 border-indigo-500 text-indigo-500 px-4 py-4 rounded-lg shadow-md mb-12 text-center transition transform hover:scale-105">
+    <h1 class="text-3xl sm:text-4xl font-bold leading-tight break-words">Posts de {{ $type }}</h1>
 </div>
 
             <div class="mb-6 w-full max-w-md mx-auto relative">
@@ -105,7 +105,7 @@
     </div>
     <time class="text-neutral-500" x-text="post.created_at"></time>
 </div>
-                            <p class="text-neutral-600 mt-8 mb-2 line-clamp-2" x-text="post.post"></p>
+                            <p class="text-neutral-600 mt-2 mb-2 line-clamp-2" x-text="post.post"></p>
 
                             <a 
                                 @click="window.location.href = baseUrl + post.id" 

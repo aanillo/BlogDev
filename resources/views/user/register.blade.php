@@ -18,7 +18,7 @@
 
     @include('partials.header')
 
-    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-48">
+    <main class="flex-grow flex flex-col items-center bg-neutral-100 text-black px-6 mt-40">
 
         <!-- Formulario de registro -->
         <form

@@ -1,5 +1,5 @@
 <header 
-  class="fixed top-0 left-0 w-full bg-neutral-800 z-50 p-4" 
+  class="fixed top-0 left-0 w-full bg-neutral-800 z-40 p-4" 
   x-data="{ navOpen: false }"
 >
   <div class="max-w-[1500px] mx-auto px-4">
@@ -8,7 +8,7 @@
       <!-- Logo -->
       <div class="flex-shrink-0 mr-auto ml-0 sm:ml-10 border border-lime-300 rounded-full bg-neutral-700 hover:bg-neutral-800">
         <a href="{{ url('/') }}">
-          <img src="{{ asset('img/logoSinFondo.png') }}" width="120px" />
+          <img src="{{ asset('img/logoSinFondo.png') }}" width="100px" />
         </a>
       </div>
 
@@ -106,8 +106,8 @@
       <!-- Navegación desktop -->
       <div class="hidden md:flex flex-grow justify-center text-lime-400">
         <div class="flex flex-col items-center text-center">
-          <h1 class="text-3xl md:text-5xl text-lime-400 leading-tight">El rincón del dev</h1>
-          <div class="flex text-xl gap-x-10 mt-3 text-lime-300 justify-center">
+          <h1 class="text-2xl md:text-5xl text-lime-400 leading-tight">El rincón del dev</h1>
+          <div class="flex text-lg gap-x-10 mt-3 text-lime-300 justify-center">
             <a href="{{ url('/') }}" class="transition-transform duration-1000 hover:scale-125 
               {{ request()->is('/') ? 'text-lime-300 scale-125 underline' : 'text-lime-400' }}">
               Inicio
